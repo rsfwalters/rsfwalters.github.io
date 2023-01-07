@@ -127,13 +127,13 @@
 
                 <div class="gallery">
                     <figure class="gallery_item">
-                        <img src="../images/rw-1.jpg" class="gallery_img " alt="Robin Walters">
-                        <figcaption class="figcaption"><a href="index.html">Robin Walters</a></figcaption>
+                        <img src="../images/david-klee.jpg" class="gallery_img " alt="David Klee">
+                        <figcaption class="figcaption"><a href="https://dmklee.github.io/" target="_blank">David Klee</a></figcaption>
                     </figure>
 
                     <figure class="gallery_item">
-                        <img src="../images/rw-1.jpg" class="gallery_img " alt="Robin Walters">
-                        <figcaption class="figcaption"><a href="index.html">Robin Walters</a></figcaption>
+                        <img src="../images/vedanshi-shah.jpg" class="gallery_img " alt="Vedanshi Shah">
+                        <figcaption class="figcaption"><a href="https://shahve.wixsite.com/vedanshi" target="_blank">Vedanshi Shah</a></figcaption>
                     </figure>
 
                     <figure class="gallery_item">
@@ -181,43 +181,93 @@
 
                 <div class="publications">
 
-                    <h2 class="year">2021</h2>
+                    <h2 class="year">2022</h2>
                     <ol class="bibliography">
                         <li>
                             <div class="row">
                                 <div class="col-sm-3 abbr">
-                                    <abbr class="badge">ICML</abbr>
-                                    <abbr class="badge">ICLR</abbr>
-                                    <abbr class="badge">NeurIPS</abbr> <br/><br/>
-                                    <img src="../images/rw-1.jpg" alt="Project Image">
+                                    <abbr class="badge">PMLR Vol. 197</abbr>
+                                    <!-- <abbr class="badge">ICLR</abbr>
+                                    <abbr class="badge">NeurIPS</abbr> <br/><br/> -->
+                                    <img src="../publications/images/image-to-icosahedral.png" alt="Project Image">
                                 </div>
 
                                 <div id="iClarify" class="col-sm-8">
-                                    <div class="title">Lorem Ipsum Lorem Ipsum</div>
+                                    <div class="title">Image to Icosahedral Projection for SO(3) Object Reasoning from Single-View Images</div>
                                     <div class="author">
-                                        <a href="index.html" target="_blank" rel="noopener noreferrer"><em>Robin Walters</em></a>,
-                                        <a href="http://google.com/" target="_blank" rel="noopener noreferrer">2nd Author</a>
-                                        <a href="http://google.com/" target="_blank" rel="noopener noreferrer">3rd Author</a>
+                                        <a href="https://dmklee.github.io/" target="_blank" rel="noopener noreferrer">David M. Klee</a>,
+                                        <a href="https://sites.google.com/view/obiza" target="_blank" rel="noopener noreferrer">Ondrej Biza</a>,
+                                        <a href="https://www.khoury.northeastern.edu/people/robert-platt/" target="_blank" rel="noopener noreferrer">Robert Platt</a>,
+                                        <a href="../index.html" target="_blank" rel="noopener noreferrer">Robin Walters</a>
                                     </div>
 
                                     <div class="periodical">
-                                        <em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</em>                                        2022
+                                        <em>We develop a hybrid equivariant model that incorporates SO(2) and SO(3) equivariant convolution layers to improve 3D reasoning from 2D images.   Our method outperforms baselines on shape classification and pose prediction tasks, especially in the low-data regime.</em>
                                     </div>
 
 
                                     <div class="links">
                                         <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
-                                        <a href="link" class="btn btn-sm z-depth-0" role="button">PDF</a>
-                                        <a href="link" class="btn btn-sm z-depth-0" role="button">Code</a>
-                                        <a href="link" class="btn btn-sm z-depth-0" role="button">Data</a>
+                                        <a href="https://arxiv.org/abs/2207.08925" target="_blank" class="btn btn-sm z-depth-0" role="button">PDF</a>
+                                        <a href="https://github.com/dmklee/image2icosahedral" target="_blank" class="btn btn-sm z-depth-0" role="button">Code</a>
+                                        <a href="https://dmklee.github.io/image2icosahedral/" target="_blank" class="btn btn-sm z-depth-0" role="button">Webpage</a>
                                     </div>
 
                                     <!-- Hidden abstract block -->
                                     <div class="abstract hidden">
-                                        <p>Abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                            ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        <p>Abstract: Reasoning about 3D objects based on 2D images is challenging due to variations in appearance caused by viewing the object from different orientations. Tasks such as object classification are invariant
+                                            to 3D rotations and other such as pose estimation are equivariant. However, imposing equivariance as a model constraint is typically not possible with 2D image input because we do not have an a priori model
+                                            of how the image changes under out-of-plane object rotations. The only SO(3)-equivariant models that currently exist require point cloud or voxel input rather than 2D images. In this paper, we propose a novel
+                                            architecture based on icosahedral group convolutions that reasons in SO(3) by learning a projection of the input image onto an icosahedron. The resulting model is approximately equivariant to rotation in SO(3).
+                                            We apply this model to object pose estimation and shape classification tasks and find that it outperforms reasonable baselines.
+                                        </p>
+                                    </div>
+                                    <!-- Hidden bibtex block -->
+
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <h2 class="year">2022</h2>
+                    <ol class="bibliography">
+                        <li>
+                            <div class="row">
+                                <div class="col-sm-3 abbr">
+                                    <abbr class="badge">RLDM 2022</abbr>
+                                    <!-- <abbr class="badge">ICLR</abbr>
+                                    <abbr class="badge">NeurIPS</abbr> <br/><br/> -->
+                                    <img src="../publications/images/understanding-the-mechanisms.png" alt="Project Image">
+                                </div>
+
+                                <div id="iClarify" class="col-sm-8">
+                                    <div class="title">Understanding the Mechanism behind Data Augmentation's Success on Image-based RL
+                                    </div>
+                                    <div class="author">
+                                        <a href="https://dmklee.github.io/" target="_blank" rel="noopener noreferrer">David M. Klee</a>,
+                                        <a href="../index.html" target="_blank" rel="noopener noreferrer">Robin Walters</a>,
+                                        <a href="https://www.khoury.northeastern.edu/people/robert-platt/" target="_blank" rel="noopener noreferrer">Robert Platt</a>
+                                    </div>
+
+                                    <div class="periodical">
+                                        <em>Data augmentation is known to provide substantial benefits for image-based reinforcement learning (RL) but the mechanism is not clear.  We show that data augmentation increases both the equivariance and invariance of the convolutional encoder, e.g. the feature map is spatially smooth.  We show that a simple Gaussian blur operation can achieve the same effect for some of the tested environments.</em>
+                                    </div>
+
+
+                                    <div class="links">
+                                        <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
+                                        <a href="https://dmklee.github.io/assets/publications/data_aug/paper.pdf" target="_blank" class="btn btn-sm z-depth-0" role="button">PDF</a>
+                                        <a href="https://dmklee.github.io/assets/publications/data_aug/poster.pdf" target="_blank" class="btn btn-sm z-depth-0" role="button">Poster</a>
+                                        <!-- <a href="https://dmklee.github.io/image2icosahedral/" target="_blank" class="btn btn-sm z-depth-0" role="button">Webpage</a> -->
+                                    </div>
+
+                                    <!-- Hidden abstract block -->
+                                    <div class="abstract hidden">
+                                        <p>Abstract: Reinforcement learning for continuous control tasks is challenging with image observations, due to the representation learning problem. A series of recent work has shown that augmenting the observations
+                                            via random shifts during training significantly improves performance, even matching state-based methods. However, it is not well-understood why augmentation is so beneficial; since the method uses a nearly-shift
+                                            equivariant convolutional encoder, shifting the input should have little impact on what features are learned. In this work, we investigate why random shifts are useful augmentations for image-based RL and show
+                                            that it increases both the shift-equivariance and shift-invariance of the encoder. In other words, the visual features learned exhibit spatial continuity, which we show can be partially achieved using dropout.
+                                            We hypothesize that the spatial continuity of the visual encoding simplifies learning for the subsequent linear layers in the actor-critic networks.
                                         </p>
                                     </div>
                                     <!-- Hidden bibtex block -->
