@@ -781,3 +781,10 @@ d-appendix a.footnote-backlink:hover {
 
 
 /*# sourceMappingURL=main.css.map */
+
+
+/* Solid border */
+
+hr.solid {
+    border-top: 3px solid #bbb;
+}
