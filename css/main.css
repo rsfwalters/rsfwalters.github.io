@@ -120,6 +120,10 @@ table.table a:hover:after :not(.nav-item.dropdown) {
     width: 100%;
 }
 
+#hidden-table {
+    display: none;
+}
+
 blockquote {
     background: var(--global-bg-color);
     border-left: 2px solid var(--global-theme-color);
@@ -708,6 +712,67 @@ html.transition *:after {
     color: var(--global-text-color-light);
     font-size: 0.875rem;
     padding-top: 0.25rem;
+}
+
+
+/* Three columns side by side */
+
+.column {
+    float: left;
+    width: 25%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+}
+
+.column1 {
+    float: center;
+    width: 25%;
+    margin-left: 37.5%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+}
+
+
+/* Display the columns below each other instead of side by side on small screens */
+
+@media screen and (max-width: 650px) {
+    .column {
+        width: 100%;
+        display: block;
+    }
+    .column1 {
+        width: 100%;
+        display: block;
+        margin-left: 0%;
+    }
+}
+
+
+/* Add some shadows to create a card effect */
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+/* Some left and right padding inside the container */
+
+.container {
+    padding: 0 16px;
+}
+
+
+/* Clear floats */
+
+.container::after,
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.card .figcaption {
+    text-align: center;
 }
 
 
