@@ -539,6 +539,11 @@ footer.sticky-bottom {
     width: 100%;
     height: 400%;
     padding-bottom: 5%;
+    /* move img up slightly */
+    transform: translate(0%, -5%);
+    /* Moves img to back layer (behind journal banner) */
+    z-index:-1;  
+    position:relative;
 }
 
 @media (max-width: 576px) {
