@@ -23,6 +23,6 @@ git commit -m "an informative commit message"
 git push --set-upstream origin <branch-name>
 ```
 6. Go to the fork repo page and click the button "New pull request".  Set it up as follows:
- \[base repository: rsfwalters/rsfwalters.github.io\] \[base: main\] <- \[head repository: <your-username>/rsfwalters.github.io\] \[compare: <branch-name>\].
+ \[base repository: rsfwalters/rsfwalters.github.io\] \[base: main\] <- \[head repository: \<your-username\>/rsfwalters.github.io\] \[compare: \<branch-name\>\].
  Then click "Create pull request".  Make sure you have a clear title and description before creating.
 7.  Wait patiently for the PR to be approved and merged.  Alternatively, harass Dian or Robin to approve it faster.
