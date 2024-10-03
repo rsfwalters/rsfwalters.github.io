@@ -17,5 +17,12 @@ http-server -o
 ```
 If you don't want to set up `http-server`, you can simply double click `index.html` in your file manager to open it in a browser.
 5. Commit and push your changes.
-6. Go back to the repo page and click the banner to create a pull request with your fork.  Fill in an informative title and description of changes.  
+```
+git add <filenames-that-you-changed>
+git commit -m "an informative commit message"
+git push --set-upstream origin <branch-name>
+```
+6. Go to the fork repo page and click the button "New pull request".  Set it up as follows:
+ \[base repository: rsfwalters/rsfwalters.github.io\] \[base: main\] <- \[head repository: <your-username>/rsfwalters.github.io\] \[compare: <branch-name>\].
+ Then click "Create pull request" to complete the process.
 7.  Wait patiently for the PR to be approved and merged.  Alternatively, harass Dian or Robin to approve it faster.
