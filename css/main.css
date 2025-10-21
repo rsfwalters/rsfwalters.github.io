@@ -859,3 +859,7 @@ d-appendix a.footnote-backlink:hover {
 hr.solid {
     border-top: 3px solid #bbb;
 }
+
+.titles {
+    height: 30%;
+}
