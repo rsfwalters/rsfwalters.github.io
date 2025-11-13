@@ -1,883 +1,784 @@
-/******************************************************************************* Variables used throughout the theme. To adjust anything, simply edit the variables below and rebuild the theme. */
-
-/******************************************************************************* Themes */
-
-:root {
-  --global-bg-color: #ffffff;
-  --global-code-bg-color: rgba(181, 9, 172, 0.05);
-  --global-text-color: #000000;
-  --global-text-color-light: #828282;
-  --global-theme-color: blue;
-  --global-hover-color: red;
-  --global-footer-bg-color: #1c1c1d;
-  --global-footer-text-color: #e8e8e8;
-  --global-footer-link-color: #ffffff;
-  --global-distill-app-color: #828282;
-  --global-divider-color: #000000;
-}
-
-:root .fa-sun {
-  display: none;
-}
-
-:root .fa-moon {
-  padding-left: 10px;
-  padding-top: 12px;
-  display: block;
-}
-
-html[data-theme="dark"] {
-  --global-bg-color: #1c1c1d;
-  --global-code-bg-color: #2c3237;
-  --global-text-color: #e8e8e8;
-  --global-text-color-light: #e8e8e8;
-  --global-theme-color: #2698ba;
-  --global-hover-color: red;
-  --global-footer-bg-color: #e8e8e8;
-  --global-footer-text-color: #1c1c1d;
-  --global-footer-link-color: #000000;
-  --global-distill-app-color: #e8e8e8;
-  --global-divider-color: #424246;
-}
-
-html[data-theme="dark"] .fa-sun {
-  padding-left: 10px;
-  padding-top: 12px;
-  display: block;
-}
-
-html[data-theme="dark"] .fa-moon {
-  display: none;
-}
-
-/****************************************************************************** Content */
-
-body {
-  padding-bottom: 70px;
-  color: var(--global-text-color);
-  background-color: var(--global-bg-color);
-}
-
-body.fixed-top-nav {
-  padding-top: 56px;
-}
-
-body.sticky-bottom-footer {
-  padding-bottom: 0;
-}
-
-.container {
-  max-width: 1000px;
-}
-
-.profile img {
-  width: 100%;
-}
-
-/****************************************************************************** Publications */
-
-/***************************************************************************** Projects */
-
-/******************************************************************************* Styles for the base elements of the theme. */
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-em,
-div,
-li,
-span,
-strong {
-  color: var(--global-text-color);
-}
-
-hr {
-  border-top: 1px solid var(--global-divider-color);
-}
-
-a,
-table.table a {
-  color: var(--global-theme-color);
-}
-
-a:hover,
-table.table a:hover {
-  color: var(--global-theme-color);
-  text-decoration: underline;
-}
-
-a:hover:after :not(.nav-item.dropdown),
-table.table a:hover:after :not(.nav-item.dropdown) {
-  width: 100%;
-}
-
-#hidden-table {
-  display: none;
-}
-
-blockquote {
-  background: var(--global-bg-color);
-  border-left: 2px solid var(--global-theme-color);
-  margin: 1.5em 10px;
-  padding: 0.5em 10px;
-  font-size: 1.2rem;
-}
-
-.equation {
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.caption {
-  font-size: 0.875rem;
-  margin-top: 0.75rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.citation,
-.citation-number {
-  color: var(--global-theme-color);
-}
-
-.profile {
-  margin-left: 1rem;
-  width: 100%;
-  border: 0.1px solid #000000;
-  padding-left: 2%;
-  padding-right: 2%;
-  padding-top: 2%;
-}
-
-.profile .address {
-  margin-bottom: 5px;
-  margin-top: 5px;
-  font-family: monospace;
-}
-
-.profile .address p {
-  display: inline-block;
-  margin: 0;
-}
-
-.profile .address h4 {
-  display: inline-block;
-  margin: 0;
-}
-
-@media (min-width: 576px) {
-  .profile {
-    width: 30%;
-  }
-  .profile .address p {
-    display: block;
-  }
-}
-
-.post-description {
-  margin-bottom: 2rem;
-  font-size: 0.875rem;
-}
-
-.post-description a {
-  color: inherit;
-}
-
-.post-description a:hover {
-  color: var(--global-theme-color);
-  text-decoration: none;
-}
-
-.post-title-research-page {
-  text-align: center;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 25%);
-  grid-template-rows: repeat(2, 35%);
-  grid-gap: 2%;
-  margin-bottom: -10%;
-}
-
-.gallery_img {
-  width: 100%;
-  height: 100%;
-  padding-top: 5%;
-}
-
-.gallery figcaption {
-  text-align: center;
-}
-
-.navbar {
-  box-shadow: none;
-  border-bottom: 1px solid var(--global-divider-color);
-  background-color: var(--global-bg-color);
-  opacity: 0.95;
-}
-
-.navbar .dropdown-menu {
-  background-color: var(--global-bg-color);
-  border: 1px solid var(--global-divider-color);
-}
-
-.navbar .dropdown-menu a:not(.active) {
-  color: var(--global-text-color);
-}
-
-.navbar .dropdown-menu a:hover {
-  color: var(--global-hover-color);
-}
-
-.navbar .dropdown-menu .dropdown-divider {
-  border-top: 1px solid var(--global-divider-color) !important;
-}
-
-.dropdown-item {
-  color: var(--global-text-color);
-}
-
-.dropdown-item:hover {
-  color: var(--global-hover-color);
-  background-color: var(--global-bg-color);
-}
-
-.navbar.navbar-light a:hover {
-  text-decoration: none;
-}
-
-.navbar.navbar-light .navbar-brand {
-  color: var(--global-text-color);
-}
-
-.navbar.navbar-light .navbar-nav .nav-item .nav-link {
-  color: var(--global-text-color);
-}
-
-.navbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
-  color: var(--global-hover-color);
-}
-
-.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
-  background-color: inherit;
-  font-weight: bolder;
-  color: var(--global-theme-color);
-}
-
-.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link:hover {
-  color: var(--global-hover-color);
-}
-
-.navbar.navbar-light .navbar-brand.social {
-  padding-bottom: 0;
-  padding-top: 0;
-  font-size: 1.7rem;
-}
-
-.navbar.navbar-light .navbar-brand.social a i::before {
-  color: var(--global-text-color);
-  -webkit-transition: all 0.2s ease-in-out;
-}
-
-.navbar.navbar-light .navbar-brand.social a:hover i::before {
-  color: var(--global-theme-color);
-}
-
-.navbar-toggler .icon-bar {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background-color: var(--global-text-color);
-  border-radius: 1px;
-  margin-bottom: 4px;
-  transition: all 0.2s;
-}
-
-.navbar-toggler .top-bar {
-  transform: rotate(45deg);
-  transform-origin: 10% 10%;
-}
-
-.navbar-toggler .middle-bar {
-  opacity: 0;
-}
-
-.navbar-toggler .bottom-bar {
-  transform: rotate(-45deg);
-  transform-origin: 10% 90%;
-}
-
-.navbar-toggler.collapsed .top-bar {
-  transform: rotate(0);
-}
-
-.navbar-toggler.collapsed .middle-bar {
-  opacity: 1;
-}
-
-.navbar-toggler.collapsed .bottom-bar {
-  transform: rotate(0);
-}
-
-.news table td {
-  font-size: 1rem;
-  color: var(--global-text-color);
-}
-
-.news table th {
-  color: var(--global-text-color);
-}
-
-.social {
-  text-align: center;
-}
-
-.social .contact-icons {
-  font-size: 2rem;
-}
-
-.social .contact-icons a i::before {
-  color: var(--global-text-color);
-  -webkit-transition: all 0.2s ease-in-out;
-}
-
-.social .contact-icons a:hover i::before {
-  color: var(--global-theme-color);
-}
-
-.social .contact-note {
-  font-size: 0.8rem;
-}
-
-footer.fixed-bottom {
-  background-color: var(--global-footer-bg-color);
-  font-size: 0.75rem;
-}
-
-footer.fixed-bottom .container {
-  color: var(--global-footer-text-color);
-  padding-top: 9px;
-  padding-bottom: 8px;
-  align-items: center;
-  text-align: center;
-}
-
-footer.fixed-bottom a {
-  color: var(--global-footer-link-color);
-}
-
-footer.fixed-bottom a:hover {
-  color: var(--global-theme-color);
-  text-decoration: none;
-}
-
-footer.sticky-bottom {
-  border-top: 1px solid var(--global-divider-color);
-  padding-top: 40px;
-  padding-bottom: 40px;
-  font-size: 0.9rem;
-}
-
-.header-bar {
-  border-bottom: 1px solid var(--global-divider-color);
-  text-align: center;
-  padding-top: 2rem;
-  padding-bottom: 5rem;
-}
-
-.header-bar h1 {
-  color: var(--global-theme-color);
-  font-size: 5rem;
-}
-
-.post-list {
-  margin: 0;
-  margin-bottom: 40px;
-  padding: 0;
-}
-
-.post-list li {
-  border-bottom: 1px solid var(--global-divider-color);
-  list-style: none;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-.post-list li .post-meta {
-  color: var(--global-text-color-light);
-  font-size: 0.875rem;
-  margin-bottom: 0;
-}
-
-.post-list li .post-tags {
-  color: var(--global-text-color-light);
-  font-size: 0.875rem;
-  padding-top: 0.25rem;
-}
-
-.post-list li a {
-  color: var(--global-text-color);
-  text-decoration: none;
-}
-
-.post-list li a:hover {
-  color: var(--global-theme-color);
-}
-
-.pagination .page-item .page-link {
-  color: var(--global-text-color);
-}
-
-.pagination .page-item .page-link:hover {
-  color: #000000;
-}
-
-.pagination .page-item.active .page-link {
-  color: #ffffff;
-  background-color: var(--global-theme-color);
-}
-
-.pagination .page-item.active .page-link:hover {
-  background-color: var(--global-theme-color);
-}
-
-.distill a:hover {
-  border-bottom-color: var(--global-theme-color);
-  text-decoration: none;
-}
-
-.projects a {
-  text-decoration: none;
-}
-
-.projects a:hover .card-title {
-  color: var(--global-theme-color);
-}
-
-.projects .card img {
-  width: 100%;
-}
-
-.projects .card .card-title {
-  color: #000000;
-}
-
-.projects .card-item {
-  width: auto;
-  margin-bottom: 10px;
-}
-
-.projects .card-item .row {
-  display: flex;
-  align-items: center;
-}
-
-.projects .grid-item {
-  width: 250px;
-  margin-bottom: 10px;
-}
-
-.projects h2.category {
-  color: var(--global-divider-color);
-  border-bottom: 1px solid var(--global-divider-color);
-  padding-top: 0.5rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  text-align: right;
-}
-
-.publications {
-  margin-top: 2rem;
-}
-
-.publications h1 {
-  color: var(--global-theme-color);
-  font-size: 2rem;
-  text-align: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-.publications h2 {
-  margin-bottom: 1rem;
-}
-
-.publications h2 span {
-  font-size: 1.5rem;
-}
-
-.publications h2.year {
-  color: var(--global-divider-color);
-  border-top: 1px solid var(--global-divider-color);
-  padding-top: 1rem;
-  margin-top: 2rem;
-  margin-bottom: -2rem;
-  text-align: right;
-}
-
-.publications ol.bibliography {
-  list-style: none;
-  padding: 0;
-  margin-top: 0;
-}
-
-.publications ol.bibliography li {
-  margin-bottom: 1rem;
-}
-
-.publications ol.bibliography img {
-  width: 100%;
-  height: 400%;
-  padding-bottom: 5%;
-  /* move img up slightly */
-  transform: translate(0%, -5%);
-  /* Moves img to back layer (behind journal banner) */
-  z-index: -1;
-  position: relative;
-}
-
-@media (max-width: 576px) {
-  .publications ol.bibliography li {
-    position: relative;
-    /* transform: none; */
-  }
-  .publications ol.bibliography img {
-    /* position: relative; */
-    display: none;
-  }
-}
-
-.publications ol.bibliography li .abbr {
-  height: 2rem;
-  margin-bottom: 0.5rem;
-}
-
-.publications ol.bibliography li .abbr abbr {
-  display: inline-block;
-  background-color: var(--global-theme-color);
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.publications ol.bibliography li .abbr abbr a {
-  color: white;
-}
-
-.publications ol.bibliography li .abbr abbr a:hover {
-  text-decoration: none;
-}
-
-.publications ol.bibliography li .abbr .award {
-  color: var(--global-theme-color) !important;
-  border: 1px solid var(--global-theme-color);
-}
-
-.publications ol.bibliography li .title {
-  font-weight: bolder;
-}
-
-.publications ol.bibliography li .author a {
-  border-bottom: 1px dashed var(--global-theme-color);
-}
-
-.publications ol.bibliography li .author a:hover {
-  border-bottom-style: solid;
-  text-decoration: none;
-}
-
-.publications ol.bibliography li .author > em {
-  border-bottom: 1px solid;
-  font-style: normal;
-}
-
-.publications ol.bibliography li .links a.btn {
-  color: var(--global-text-color);
-  border: 1px solid var(--global-text-color);
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-.publications ol.bibliography li .links a.btn:hover {
-  color: var(--global-theme-color);
-  border-color: var(--global-theme-color);
-}
-
-.publications ol.bibliography li .hidden {
-  font-size: 0.875rem;
-  max-height: 0px;
-  overflow: hidden;
-  text-align: justify;
-  -webkit-transition: 0.15s ease;
-  -moz-transition: 0.15s ease;
-  -ms-transition: 0.15s ease;
-  -o-transition: 0.15s ease;
-  transition: all 0.15s ease;
-}
-
-.publications ol.bibliography li .hidden p {
-  line-height: 1.4em;
-  margin: 10px;
-}
-
-.publications ol.bibliography li .hidden pre {
-  font-size: 1em;
-  line-height: 1.4em;
-  padding: 10px;
-}
-
-.publications ol.bibliography li .hidden.open {
-  max-height: 100em;
-  -webkit-transition: 0.15s ease;
-  -moz-transition: 0.15s ease;
-  -ms-transition: 0.15s ease;
-  -o-transition: 0.15s ease;
-  transition: all 0.15s ease;
-}
-
-.publications ol.bibliography li div.abstract.hidden {
-  border: dashed 1px var(--global-bg-color);
-}
-
-.publications ol.bibliography li div.abstract.hidden.open {
-  border-color: var(--global-text-color);
-}
-
-figure.highlight {
-  margin: 0 0 1rem;
-}
-
-pre {
-  color: var(--global-theme-color);
-  background-color: var(--global-code-bg-color);
-  border-radius: 6px;
-  padding: 6px 12px;
-}
-
-pre pre,
-pre code {
-  background-color: transparent;
-  border-radius: 0;
-  padding: 0;
-}
-
-code {
-  color: var(--global-theme-color);
-  background-color: var(--global-code-bg-color);
-  border-radius: 3px;
-  padding: 3px 3px;
-}
-
-html.transition,
-html.transition *,
-html.transition *:before,
-html.transition *:after {
-  transition: all 750ms !important;
-  transition-delay: 0 !important;
-}
-
-.post .post-meta {
-  color: var(--global-text-color-light);
-  font-size: 0.875rem;
-  margin-bottom: 0;
-}
-
-.post .post-tags {
-  color: var(--global-text-color-light);
-  font-size: 0.875rem;
-  padding-bottom: 1rem;
-}
-
-.post .post-tags a {
-  color: var(--global-text-color-light);
-  text-decoration: none;
-}
-
-.post .post-tags a:hover {
-  color: var(--global-theme-color);
-}
-
-.post .post-content blockquote {
-  border-left: 5px solid var(--global-theme-color);
-  padding: 8px;
-}
-
-.post-tags {
-  color: var(--global-text-color-light);
-  font-size: 0.875rem;
-  padding-top: 0.25rem;
-}
-
-/* Three columns side by side */
-
-.column {
-  float: left;
-  width: 25%;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
-.column1 {
-  float: center;
-  width: 25%;
-  margin-left: 37.5%;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
-/* Display the columns below each other instead of side by side on small screens */
-
-@media screen and (max-width: 650px) {
-  .column {
-    width: 100%;
-    display: block;
-  }
-  .column1 {
-    width: 100%;
-    display: block;
-    margin-left: 0%;
-  }
-}
-
-/* Add some shadows to create a card effect */
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-/* Some left and right padding inside the container */
-
-.container {
-  padding: 0 16px;
-}
-
-/* Clear floats */
-
-.container::after,
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.card .figcaption {
-  text-align: center;
-}
-
-/******************************************************************************* Style overrides for distill blog posts. */
-
-d-byline {
-  border-top-color: #e8e8e8 !important;
-}
-
-d-byline h3 {
-  color: var(--global-text-color) !important;
-}
-
-d-byline a,
-d-article d-byline a {
-  color: var(--global-text-color) !important;
-}
-
-d-byline a:hover,
-d-article d-byline a:hover {
-  color: var(--global-hover-color) !important;
-}
-
-d-article {
-  border-top-color: #e8e8e8 !important;
-}
-
-d-article a,
-d-article p,
-d-article h1,
-d-article h2,
-d-article h3,
-d-article h4,
-d-article h5,
-d-article h6,
-d-article li,
-d-article table {
-  color: var(--global-text-color) !important;
-}
-
-d-article a,
-d-article h1,
-d-article h2,
-d-article hr {
-  border-bottom-color: #e8e8e8 !important;
-}
-
-d-article a:hover {
-  border-bottom-color: var(--global-hover-color) !important;
-}
-
-d-appendix {
-  border-top-color: #e8e8e8 !important;
-  color: var(--global-distill-app-color) !important;
-}
-
-d-appendix h3,
-d-appendix li,
-d-appendix span {
-  color: var(--global-distill-app-color) !important;
-}
-
-d-appendix a,
-d-appendix a.footnote-backlink {
-  color: var(--global-distill-app-color) !important;
-}
-
-d-appendix a:hover,
-d-appendix a.footnote-backlink:hover {
-  color: var(--global-hover-color) !important;
-}
-
-/*# sourceMappingURL=main.css.map */
-
-/* Solid border */
-
-hr.solid {
-  border-top: 3px solid #bbb;
-}
-
-.titles {
-  height: 30%;
-}
-
-/* COLLAPSIBLE PUBLICATIONS */
-
-/* Style the button that is used to open and close the collapsible content */
-.collapsible {
-  background-color: #dde2f8;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: AUTO;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 24px;
-  font-weight: 400;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active,
-.collapsible:hover {
-  background-color: #ecefff;
-}
-
-/* Style the collapsible content. Note: hidden by default */
-.content {
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>
+        Robin Walters
+    </title>
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="canonical" href="/">
+
+</head>
+
+<body class="fixed-top-nav sticky-bottom-footer">
+
+    <!-- Header -->
+    <header>
+        <!-- Nav Bar -->
+        <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+            <div class="container">
+                <!-- Logo -->
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/logo.png" alt="Logo" style="height: 60px;"> <!-- Adjust the height as needed -->
+                </a>
+                <!-- Navbar Toggle -->
+                <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar top-bar"></span>
+                    <span class="icon-bar middle-bar"></span>
+                    <span class="icon-bar bottom-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse text-right" id="navbarNav">
+                    <ul class="navbar-nav ml-auto flex-nowrap">
+                        <!-- About -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">
+                                Home              
+                                <span class="sr-only">(current)</span>              
+                            </a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="pages/research.html">
+                                Research              
+                                <span class="sr-only">(current)</span>              
+                            </a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="pages/geometric-learning-lab.html">
+                                Lab             
+                                <span class="sr-only">(current)</span>              
+                            </a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" href="pages/teaching.html">
+                                Teaching              
+                                <span class="sr-only">(current)</span>              
+                            </a>
+                        </li>
+
+                        <!-- <li class="nav-item active">
+                            <a class="nav-link" href="/">
+                                Contact              
+                                <span class="sr-only">(current)</span>              
+                            </a>
+                        </li> -->
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+        <div class="post">
+
+            <header class="post-header">
+                <h1 class="post-title">
+                    <span class="font-weight-bold">Robin Walters</span>
+                </h1>
+                <p class="desc"></p>
+            </header>
+
+            <article>
+
+                <div class="profile float-right">
+
+                    <img class="img-fluid z-depth-1 rounded" src="images/rw-1.jpg">
+
+                    <div class="address">
+                        <h4><b>Robin Walters</b></h4>
+                        <p>Assistant Professor</p>
+                        <p>Khoury College of Computer Sciences</p>
+                        <p>Northeastern University</p>
+                        <p><a href="mailto:r.walters@northeastern.edu">r.walters@northeastern.edu</a></p>
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix">
+                    <p>
+                        Hi! I'm an Assistant Professor of computer science at Northeastern University and director of the Geometric Learning Lab. My research is on symmetry in deep learning.
+                    </p>
+
+                    <p>
+                        Our research spans from theory of deep learning through the lens of symmetry to development of new equivariant models to applications of equivariant neural networks to a diverse set of applications in science and engineering.
+                    </p>
+
+                    <!--<p>
+                        We are recruiting 2 new Ph.D. students next year! Please email me and apply to the <a href="https://www.khoury.northeastern.edu/apply/phd-apply/"> central Khoury Ph.D. application portal</a>.
+                    </p>-->
+
+                </div>
+
+
+<div class="news">
+<h2>Updates</h2>
+
+<!-- ---------------------------------- A W A R D S---------------------------------------------------------------- -->
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    Awarded the NSF CAREER Grant for the project Improving Data Efficiency in Deep Learning with Relaxed Symmetry Constraints, receiving $600,000 for the period 2025-2030.
+</a>
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    Awarded the Northeastern TEIR 1 Interdisciplinary Seed Grant funding of $50,000, in collaboration with Peter Schindler (MIE).
+</a>
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    Awarded the EAI Seed Funding of $60,000, in collaboration with Peter Schindler (MIE).
+</a>
+
+<!-- -----------------------------P R E S E N T A T I O N S--------------------------------------------------------------------- -->
+
+
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will be presenting <a href="https://ai4science.ai.gatech.edu/seminars/" target="_blank">Research on Improving Convergence and Generalization in Deep Learning Using Parameter Symmetries</a> at the GATech AI4Science Presentation in October 2025.
+</a>
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will be presenting <a href="https://www.whoi.edu/event/aope-department-hybrid-seminar-learning-for-dynamics-and-control-using-equivariant-neural-networks/" target="_blank">Research on Equivariant Neural Networks for Dynamics and Control</a> at the Woods Hole Oceanographic Research Institute in November 2025.
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will be speaking at the NeurReps Workshop in San Diego, CA in December 2025.
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will present at the <a href="https://equivision.github.io/" target="_blank">Equivision Workshop during CVPR in Nashville, TN</a> in June 2025.
+</a>
+
+
+    
+        
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will give a talk at the <a href=https://www.grasp.upenn.edu/events/spring-2025-grasp-seminar-robin-walters/"" target="_blank">GRASP Seminar at the University of Pennsylvania</a> in May 2025.
+
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will be presenting on the topic of <a href="https://arxiv.org/abs/2305.13404" target="_blank">Improving Convergence and Generalization in Deep Learning Using Parameter Symmetries</a> during the Joint Mathematics Meetings AMS Special Session in Seattle, WA in January 2025.
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    Recognized as an <a href="https://2024.corl.org/program/awards">Outstanding Paper Finalist at the Conference on Robot Learning (CoRL)</a>, 2024.
+</a>
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    Awarded <a href="https://openreview.net/forum?id=gkrynRGiOi">Best Paper at the 2nd Workshop on High-dimensional Learning Dynamics at ICLR</a>, 2024.
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will present <a href="https://astroai.cfa.harvard.edu/people/" target="_blank">Research at the AstroAI Seminar at the Harvard Smithsonian Center for Astrophysics</a> in June 2024.
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will discuss Equivariant Neural Networks at the Computer Vision Reading Group at CalTech in June 2024.
+
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will speak about <a href="https://equirob2024.github.io/" target="_blank">pushing the limits of Equivariant Neural Networks at the IROS Workshop on Equivariant Robotics in Abu Dhabi, UAE</a> in October 2024.
+
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will share insights on <a href="https://rai-inst.com/about/visiting-fellows-overview/" target="_blank">pushing the limits of Equivariant Neural Networks at The AI Institute in Cambridge, MA</a> in October 2024.
+
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will discuss <a href="https://www.youtube.com/watch?v=Z9bJzWh0nfI" target="_blank">pushing the limits of Equivariant Neural Networks during the NeurReps Global Speaker Series at MIT</a> in October 2024.
+
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will deliver an oral session on <a href="https://openreview.net/group?id=ICLR.cc/2024/Conference" target="_blank">Improving Convergence and Generalization in Deep Learning Using Parameter Symmetries at ICLR in Vienna, Austria</a> in May 2024.
+
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+    I will present <br>Research on Simulating Radar Using Equivariant Graph Neural Networks at the Recent Advances in AI for National Security Conference in Bedford, MA</b> in November 2024.
+</a>
+
+<br>
+<tr><th><i class="fab fa-jira"></i></th><td>
+<a class="news-title">
+I will discuss <a href="https://www.youtube.com/watch?v=cKm4Ab4mQiY" target="_blank">Equivariant Neural Networks at the Symposium on Graphics Processing Graduate School at MIT</a> in June 2024.
+</a>
+ </table>
+
+
+ <br><br>
+
+                        <a class="load_more" href="#">Show older updates</a>
+
+                        <table class="table table-sm table-borderless" id="hidden-table">
+
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a> I am giving a tutorial at <a href="https://sgp2024.github.io/"> Symposium on Geometry Processing 2024 </a> graduate summer school on June 22, 2024. </a>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a> Please submit to the <a href="https://gram-workshop.github.io/"> Geometry-grounded Representation Learning and Generative Modeling </a> Workshop we are organizing at ICML 2024 </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a> Congratulations to Circe Hsu who won a <a href="https://undergraduate.northeastern.edu/research/awards/peak-awards-overview/">PEAK award</a> to fund her research on ML4Math. </a>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Thanks to Northeastern Research Development for Interdisciplinary TEIR 1 Seed funding. </a>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a><a href="https://arxiv.org/abs/2311.14675">Paper on using homomorphic structure for rapid calibration of EMG devices</a> accepted to TMLR</a>
+                                </td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>We are giving a tutorial at <a href="https://aiinaction.sites.northeastern.edu/">AI in Action</a> on Everyday Robotics</a>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Thanks to <a href="https://ai.northeastern.edu/">EAI Institute></a> for Seed funding with <a href="https://pschindler.net/about">Peter Schindler</a> to develop generative models for novel catalysts.</a>
+                                </td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Check out this <a href="https://www.khoury.northeastern.edu/satellite-drag-and-self-correcting-language-models-khoury-undergrads-take-neurips-conference/">news article</a> on GLL Undergrad <a href="https://nsortur.github.io/">Neel Sortur</a>.</a>
+                                </td>
+                            </tr>
+                            
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Talking at <a href="https://theaiinstitute.com/">Boston Dynamics AI Institute.</a></a>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>I'll be giving a talk at the <a href="https://people.math.harvard.edu/~ana/ons/">Open Neighborhood Seminar</a> in the Harvard Math Department on Feb 7 at 4:30pm</a>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a class="news-title">2 papers accepted to ICLR 2024:</a> <br/>
+                                    <a class="news-title" href="https://openreview.net/forum?id=L0r0GphlIL" target="_blank"> <b>(Oral)</b> Improving Convergence and Generalization Using Parameter Symmetries</a> <br/>
+                                    <a class="news-title" href="https://openreview.net/forum?id=UulwvAU1W0" target="_blank"> Fourier Transporter: Bi-Equivariant Robotic Manipulation in 3D</a> <br/>
+                                  </td>
+                            </tr>
+                            
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a class="news-title">4 papers accepted to NeurIPS:</a> <br/>
+                                    <a class="news-title" href="https://arxiv.org/abs/2303.04745" target="_blank">1. A General Theory of Correct, Incorrect, and Extrinsic Equivariance</a> <br/>
+                                    <a class="news-title" href="https://arxiv.org/abs/2310.19589" target="_blank">2. Modeling Dynamics over Meshes with Gauge Equivariant Nonlinear Message Passing</a> <br/>
+                                    <a class="news-title" href="https://arxiv.org/abs/2307.03704" target="_blank">3. Equivariant Single View Pose Prediction Via Induced and Restricted Representations</a> <br/>
+                                    <a class="news-title" href="https://openreview.net/pdf?id=1tviRBNxI9" target="_blank">4. Topological Obstructions and How to Avoid Them</a> <br/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>We had a very successful <a href="https://bostonsymmetry.github.io/">Boston Symmetry Day</a> with over 100 attendees from 30 different institutions!</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a class="news-title" href="https://openreview.net/pdf?id=9G0e8QrpxP">Our paper on modeling radar using equivariant neural networks was accepted to NeurReps proceedings tracks.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>See our labs work in progress at NeurReps, UniReps, AI4Science, and Learning on Graphs workshop where we present 8 different extended abstracts.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>I'll be giving a talk at AstroAI at the Harvard-Smithsonian CfA on Jan 29, at 12PM</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Talk at GATech <a href="https://aiml2023.physics.gatech.edu/schedule/"> AI/ML in Physics 2023 </a> .</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Colloquium at <a href="https://mae.rutgers.edu/colloquium-series"> Rutgers University Mechanical and Aerospace Engineering </a>.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Talk at <a href="https://events.seas.harvard.edu/event/guest_speaker_robin_walters_northeastern_university"> Widely Applied Mathematics Seminar at Harvard SEAS </a>.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Presented our work at <a href="https://www.simonsfoundation.org/event/mathematical-and-scientific-foundations-of-deep-learning-annual-meeting-2023/"> Simon's Foundation Mathematical and Scientific Foundations of Deep Learning Annual Meeting.</a> Part of our <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2134178">Scale-MoDL NSF Grant</a>. </a> 
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Awarded NSF FRR grant with <a href="https://www.khoury.northeastern.edu/people/robert-platt/">Robert Platt</a>.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Awarded Line Grant to collaborate with <a href="https://www.ll.mit.edu/biographies/rajmonda-s-caceres">Rajmonda Caceres</a> at MITLL and study radar signal processing with equivariant NN.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Honored to serve as AC for <a href="https://logconference.org/">Learning on Graphs (LOG) 2024</a>.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Honored to serve as AC for ICLR 2024.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Talk on Simulating Radar with ENNs at Graph Ex Symposium.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Talk and Tutorial at <a href="https://iaifi.org/phd-summer-school.html">AIFAI summer school and workshop</a>.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Talk at Umass Amherst Math department.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Talk at Michigan state masters.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Paper accepted ICML - <a href="https://arxiv.org/abs/2302.00236">Generative adversarial symmetry discovery</a>.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Paper accepted at CorL.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Master student Sumukh graduates with <a href="https://www.khoury.northeastern.edu/meet-the-2023-khoury-college-award-winners/">Khoury Research Award</a>.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>Undergrad student Neel wins <a href="https://undergraduate.northeastern.edu/research/news/spring-peak-awardees2023/">PEAK Research Award</a>.</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="fab fa-jira"></i></th>
+                                <td>
+                                    <a>More details can be found in my <a href="Robin_Walters_CV.pdf" target="_blank">CV</a>.</a>
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+
+<BR><BR>
+<button type="button" class="collapsible">PUBLICATIONS</button>
+<div class="content">
+
+<table class="table table-sm table-borderless">
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2412.12237">1. Equivariant action sampling for reinforcement learning and planning. Workshop on the Algorithmic Foundations of Robotics (WAFR), 2025. </a>
+<br> <a><i>(authors:  Linfeng Zhao, Owen Howell, Xupeng Zhu, Jung Yeon Park, Zhewen Zhang, Robin Walters, and Lawson LS Wong. )</i></a>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://icml.cc/virtual/2025/47681">2. Data-Free Transformer Quantization Using Parameter-Space Symmetry. High-Dimensional Learning Dynamics Workshop, 2025.</a>
+<br><a><i>(authors:  Lucas Laird, Bo Zhao, Rose Yu, and Robin Walters. )</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2507.01723">3. Se (3)-equivariant diffusion policy in spherical fourier space. In Forty-second International Conference on Machine Learning (ICML), 2025.</a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2505.23681">4. Understanding mode connectivity via parameter space symmetry. In Forty-second International Conference on Machine Learning (ICML), 2025.</a>
+<br><a><i>(authors:  BoZhao, NimaDehmamy, Robin Walters, and RoseYu.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2502.05728">5. Hierarchical equivariant policy via frame transfer. In Forty-second International Conference on MachineL earning (ICML), 2025.</a>
+<br> <a><i>(authors: Haibo Zhao, Dian Wang, Yizhe Zhu, Xupeng Zhu, Owen Lewis Howell, Linfeng Zhao, Yaoyao Qian, Robin Walters, and Robert Platt.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2411.04225">6. Approximate equivariance in reinforcement learning. Artificial Intelligence and Statistics (AISTATS), 2025.</a>
+<br> <a><i>(authors:  Jung Yeon Park, Sujay Bhatt, Sihan Zeng, Lawson LS Wong, Alec Koppel, Sumitra Ganesh, and Robin Walters.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2501.09597">7. Reducing the sensitivity of neural physics simulator stomeshtopology via pretraining. International Conference on Acoustics, Speech, and Signal Processing (ICASSP), 2025.</a>
+<br> <a><i>(authors: Justin Goodwin, Robin Walters, and Rajmonda Caceres.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/html/2406.15677v2">8. Learning efficient and robust language-conditioned manipulation using textual-visual relevancy and equivariant language mapping. IEEE Robotics and Automation Letters (RAL), 2025.</a>
+<br> <a><i>(authors: Mingxi Jia, Haojie Huang, Zhewen Zhang, Chenghao Wang, Linfeng Zhao, Dian Wang, Jason Xinyu Liu, Robin Walters, Robert Platt, and Stefanie Tellex.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2504.03053">9. Push-grasp policy learning using equivariant models and grasps core optimization. IEEE Robotics and Automation Letters (RAL), 2025.</a>
+<br> <a><i>(authors: Boce Hu, Heng Tian, Dian Wang, Haojie Huang, Xupeng Zhu, Robin Walters, and Robert Platt.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/77fa0e7d45c6687f1958de0b31e9fc05-Abstract-Conference.html">10. Symmetry-informed governing equation discovery. Neural Information Processing Systems (NeurIPS), 2024.</a>
+<br> <a><i>(authors: Jianke Yang, Wang Rao, Nima Dehmamy, Robin Walters, and Rose Yu.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/39137b5a573126103c8812dcdb9d0187-Paper-Conference.pdf">11. Matrixnet: Learning over symmetry groups using learned group representations. Neural Information Processing Systems (NeurIPS), 2024.</a>
+<br> <a><i>(authors: Lucas Laird, Circe Hsu, Asilata Bapat, and Robin Walters. )</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/31d1946b6bccf54bdd4a811bedd9626b-Paper-Conference.pdf">12. The empirical impact of neural parameter symmetries, or lack thereof. Neural Information Processing Systems (NeurIPS) and Best Paper at Workshop on High-Dimensional Learning Dynamics (HiLD) at ICLR, 2024.</a>
+<br> <a><i>(authors: Derek Lim, Moe Putterman, Robin Walters, Haggai Maron, and Stefanie Jegelka.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://equidiff.github.io/">13. Equivariant diffusion policy. </a>Out-standing Paper Finalist at Conference on Robot Learning (CoRL), 2024.</a>
+<br> <a><i>(authors: Dian Wang, Stephen Hart, David Surovik, Tarik Kelestemur, Haojie Huang, Haibo Zhao, Mark Yeatman, Jiuguang Wang, Robin Walters, and Robert Platt.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2407.03531">14. Orbitgrasp: se(3)-equivariant grasp learning. Conference on Robot Learning (CoRL),2024.</a>
+<br> <a><i>(authors: Boce Hu, Xupeng Zhu, Dian Wang, Zihao Dong, Haojie Huang, Chenghao Wang, Robin Walters, and Robert Platt.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2406.11740">15. Imagination policy: Using generative point cloud models for learning manipulation policies. Conference on Robot Learning (CoRL), 2024.</a>
+<br> <a><i>(authors: Haojie Huang, Karl Schmeckpeper, Dian Wang, Ondrej Biza, Yaoyao Qian, HaotianLiu, Mingxi Jia, Robert Platt, and Robin Walters.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="">16. Fourier transporter: Bi-equivariant robotic manipulation in 3d. International Conference on Learning Representations (ICLR), 2024.</a></a>
+<br> <a><i>(authors: Haojie Huang, Owen Howell, Xupeng Zhu, Dian Wang, Robin Walters, and Robert Platt.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2401.12046">17. Improving convergence and generalization using parameter symmetries. International Conference on Learning Representations (ICLR), Oral, 2024.</a>
+<br> <a><i>(authors: Bo Zhao, Robert M Gower, Robin Walters, and Rose Yu.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://arxiv.org/abs/2311.14675">18. Fast and expressive gesture recognition using a 2/12 combination-homomorphic electromyogramencoder. Transactionson Machine Learning Research, 2024.</a>
+<br> <a><i>(authors: Niklas Smedemark-Margulies, Yunus Bicer, Elifnur Sunger, Tales Imbiriba, Eugene Tunik, Deniz Erdogmus, Mathew Yarossi, and Robin Walters.)</i></a><br/>
+</td>
+</tr>
+
+<tr><th><i class="fab fa-jira"></i></th>
+<td>
+<a href="https://academic.oup.com/imrn/issue/2024/24">19. International Mathematics Research Notices, 2024(24):14543–14575, 2024.</a>
+<br> <a><i>(authors: Valerio Toledano Laredo and RobinWalters. On the finkelberg – ginzburg mirabolic monodromy conjecture.)</i></a><br/>
+</td>
+</tr>
+</table>
+</div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="social">
+                    <div class="contact-icons">
+                        <a href="mailto:r.walters@northeastern.edu"><i class="fas fa-envelope"></i></a>
+                        <a href="https://scholar.google.com/citations?user=fnprJmUAAAAJ&hl=en" title="Google Scholar" target="_blank" rel="noopener noreferrer"><i class="ai ai-google-scholar"></i></a>
+                        <a href="https://github.com/rsfwalters" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/robin-walters-0026b31a5/" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/robinsfwalters" title="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <div class="contact-note">
+                        <!-- Any contact note here -->
+                    </div>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+
+
+    <footer class="sticky-bottom mt-5">
+        <div class="container">
+            Made with <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> and Bootstrap.
+        </div>
+    </footer>
+
+
+
+</body>
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+<!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+<!-- MathJax -->
+<script type="text/javascript">
+    window.MathJax = {
+        tex: {
+            tags: 'ams'
+        }
+    };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-185703812-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-185703812-1');
+</script>
+
+<script>
+    jQuery(function($) {
+
+        $('a.load_more').on('click', function(e) {
+            e.preventDefault();
+            if ($('a.load_more').text() === "Hide older updates") {
+                $("#hidden-table").css({
+                    "display": "none"
+                });
+                $('a.load_more').text("Show older updates");
+            } else {
+                $("#hidden-table").css({
+                    "display": "inline"
+                });
+                $('a.load_more').text("Hide older updates");
+            }
+        });
+    });
+</script>
+
+<!-- COLLAPSIBLE PUBLICATIONS -->
+ <script>
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>
+
+</html>
