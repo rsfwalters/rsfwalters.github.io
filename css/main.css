@@ -881,3 +881,11 @@ hr.solid {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
 }
+
+.photo-block img {
+    display: block;
+    margin: auto;
+    max-width: 50%;   /* keeps image responsive */
+    height: auto;
+    border-radius: 30px; /* ROUND CORNERS */
+}
