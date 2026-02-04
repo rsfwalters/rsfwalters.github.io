@@ -148,6 +148,261 @@
 
                 <div class="publications">
 
+
+
+<!--------------------- v ROGERS HOLLOW EDIT v ------------------->
+<!------------------------- 2 0 2 6 ------------------------->
+
+
+
+<h2 class="year">2026</h2>
+    <ol class="bibliography">
+        <li>
+            <div class="row">
+                 <div class="col-sm-3 abbr">
+                 <abbr class="badge">ICLR 2026</abbr>
+                 <img src="/publications/images/se3 equivariant.png" alt="Project Image" style="object-fit: contain;">
+                </div>
+
+                 <div id="iClarify" class="col-sm-8">
+                    <div class="title">EquAct: An SE(3)-Equivariant Multi-Task Transformer for 3D Robotic Manipulation</div>
+                    <div class="author">
+                    <a href="https://zxp-s-works.github.io/" target="_blank" rel="noopener noreferrer">Xupeng Zhu</a>,
+                    <a href="https://roseyu.com/" target="_blank" rel="noopener noreferrer">Yu Qi</a>,
+                    <a href="https://www.linkedin.com/in/yizhe-zhu-15458ba0/" target="_blank" rel="noopener noreferrer">Yizhe Zhu</a>,
+                    <a href="../index.html" target="_blank" rel="noopener noreferrer">Robin Walters</a>,
+                    <a href="https://helpinghandslab.netlify.app/people/" target="_blank" rel="noopener noreferrer">Robert Platt</a>
+                    </div>
+
+                    <div class="periodical">
+                         <em>
+                        The Fourteenth International Conference on Learning Representations 14204 (ICLR), 2026
+                         </em>
+                    </div>
+
+
+                    <div class="links">
+                        <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
+                        <a href="https://openreview.net/pdf?id=d1wuA8oIH0" class="btn btn-sm z-depth-0" role="button">PDF</a>
+                        <a href="https://openreview.net/forum?id=d1wuA8oIH0" class="btn btn-sm z-depth-0" role="button">Webpage</a>
+                    </div>
+
+<!-- Hidden abstract block -->
+    <div class="abstract hidden">
+        <p>Multi-task manipulation policy often builds on transformer's ability to jointly process language instructions and 3D observations in a shared embedding space. However, real-world tasks frequently require robots to generalize to novel 3D object poses. Policies based on shared embedding break geometric consistency and struggle in 3D generation. To address this issue, we propose EquAct, which is theoretically guaranteed to generalize to novel 3D scene transformations by leveraging SE(3) equivariance shared across both language, observations, and action. EquAct makes two key contributions: (1) an efficient SE(3)-equivariant point cloud-based U-net with spherical Fourier features for policy reasoning, and (2) SE(3)-invariant Feature-wise Linear Modulation (iFiLM) layers for language conditioning. Finally, EquAct demonstrates strong spatial generalization ability and achieves state-of-the-art across 
+ RLBench tasks with both SE(3) and SE(2) scene perturbations, different amounts of training data, and on 
+ physical tasks.</p>
+</div>
+<!-- Hidden bibtex block -->
+</div>
+</div>
+</li>
+</ol>
+
+
+
+
+
+
+<h2 class="year">2026</h2>
+    <ol class="bibliography">
+        <li>
+            <div class="row">
+                 <div class="col-sm-3 abbr">
+                 <abbr class="badge">ICLR 2026</abbr>
+                 <img src="/publications/images/augment.png" alt="Project Image" style="object-fit: contain;">
+                </div>
+
+                 <div id="iClarify" class="col-sm-8">
+                    <div class="title">To Augment or Not to Augment? Diagnosing Distributional Symmetry Breaking</div>
+                    <div class="author">
+                    <a href="https://hannahlawrence.github.io/" target="_blank" rel="noopener noreferrer">Hannah Lawrence</a>,
+                    <a href="https://ehofgard.github.io/" target="_blank" rel="noopener noreferrer">Elyssa Hofgard</a>,
+                    <a href="http://vportilheiro.github.io/" target="_blank" rel="noopener noreferrer">Vasco Portilheiro</a>,
+                    <a href="https://scholar.google.com/citations?user=gK_KNu4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Yuxuan Chen</a>,
+                    <a href="https://www.linkedin.com/in/tesssmidt" target="_blank" rel="noopener noreferrer">Tess Smidt</a>,
+                    <a href="https://helpinghandslab.netlify.app/people/" target="_blank" rel="noopener noreferrer">Robert Platt</a>
+                    </div>
+
+                    <div class="periodical">
+                         <em>
+                        The Fourteenth International Conference on Learning Representations 14204 (ICLR), 2026
+                         </em>
+                    </div>
+
+
+                    <div class="links">
+                        <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
+                        <a href="https://openreview.net/pdf?id=ZTb4YmHD9n" class="btn btn-sm z-depth-0" role="button">PDF</a>
+                        <a href="https://openreview.net/forum?id=ZTb4YmHD9n&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICLR.cc%2F2026%2FConference%2FAuthors%23your-submissions)" class="btn btn-sm z-depth-0" role="button">Webpage</a>
+                    </div>
+
+<!-- Hidden abstract block -->
+    <div class="abstract hidden">
+        <p>Symmetry-aware methods for machine learning, such as data augmentation and equivariant architectures, encourage correct model behavior on all transformations (e.g. rotations or permutations) of the original dataset. These methods can impart improved generalization and sample efficiency, under the assumption that the transformed datapoints are highly probable, or "important", under the test distribution. In this work, we develop a method for critically evaluating this assumption. In particular, we quantify the amount of anisotropy, or symmetry-breaking, in a dataset, via a two-sample neural classifier test that distinguishes between the original dataset and its randomly augmented equivalent. We validate our metric on synthetic datasets, and then use it to uncover surprisingly high degrees of anisotropy in several benchmark point cloud datasets. In theory, this kind of distributional symmetry-breaking can actually preclude invariant methods from performing optimally even when the underlying labels truly are invariant, as we show for invariant ridge regression in the infinite feature limit. In practice, we find that the implication for symmetry-aware methods is dataset-dependent: equivariant methods still impart benefits on some anisotropic datasets, but not others. Overall, these findings suggest that understanding equivariance — both when it works, and why — may require rethinking symmetry biases in the data.</p>
+</div>
+<!-- Hidden bibtex block -->
+</div>
+</div>
+</li>
+</ol>
+
+
+
+
+
+<h2 class="year">2026</h2>
+    <ol class="bibliography">
+        <li>
+            <div class="row">
+                 <div class="col-sm-3 abbr">
+                 <abbr class="badge">ICLR 2026</abbr>
+                 <img src="/publications/images/raven.png" alt="Project Image" style="object-fit: contain;">
+                </div>
+
+                 <div id="iClarify" class="col-sm-8">
+                    <div class="title">RAVEN: End-to-end Equivariant Robot Learning with RGB Cameras</div>
+                    <div class="author">
+                    <a href="https://dmklee.github.io/" target="_blank" rel="noopener noreferrer">David Klee</a>,
+                    <a href="https://bocehu.github.io/" target="_blank" rel="noopener noreferrer">Boce Hu</a>,
+                    <a href="https://andrewcole712.github.io/" target="_blank" rel="noopener noreferrer">Andrew Cole</a>,
+                    <a href="https://scholar.google.com/citations?user=pkkjUEUAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Heng Tian/a>,
+                    <a href="https://pointw.github.io/" target="_blank" rel="noopener noreferrer">Dian Wang</a>,
+                    <a href="https://helpinghandslab.netlify.app/people/" target="_blank" rel="noopener noreferrer">Robert Platt</a>
+                    <a href="../index.html" target="_blank" rel="noopener noreferrer">Robin Walters</a>
+                    </div>
+
+                    <div class="periodical">
+                         <em>
+                        The Fourteenth International Conference on Learning Representations 14204 (ICLR), 2026
+                         </em>
+                    </div>
+
+                    <div class="links">
+                        <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
+                        <a href="https://openreview.net/pdf?id=z8BN7KyaPl" class="btn btn-sm z-depth-0" role="button">PDF</a>
+                        <a href="https://openreview.net/forum?id=z8BN7KyaPl&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICLR.cc%2F2026%2FConference%2FAuthors%23your-submissions)" class="btn btn-sm z-depth-0" role="button">Webpage</a>
+                    </div>
+
+<!-- Hidden abstract block -->
+    <div class="abstract hidden">
+        <p>Recent work has shown that equivariant policy networks can achieve strong performance on robot manipulation tasks with limited human demonstrations. However, existing equivariant methods typically require structured inputs, such as 3D point clouds or top-down camera views, which prevents their use in low-cost setups or dynamic environments. In this work, we propose the first 
+-equivariant policy learning framework that operates with only RGB image observations. The key insight is to treat image-based data as collections of rays that, unlike 2D pixels, transform under 3D roto-translations. Extensive experiments in both simulation with diverse robot configurations and real-world settings demonstrate that our method consistently surpasses strong baselines in both performance and efficiency.</p>
+</div>
+<!-- Hidden bibtex block -->
+</div>
+</div>
+</li>
+</ol>
+
+
+
+
+
+
+<h2 class="year">2026</h2>
+    <ol class="bibliography">
+        <li>
+            <div class="row">
+                 <div class="col-sm-3 abbr">
+                 <abbr class="badge">ICLR 2026</abbr>
+                 <img src="/publications/images/deepweightflow.png" alt="Project Image" style="object-fit: contain;">
+                </div>
+
+                 <div id="iClarify" class="col-sm-8">
+                    <div class="title">DeepWeightFlow: Re-Basined Flow Matching for Generating Neural Network Weights</div>
+                    <div class="author">
+                    <a href="https://saumya-gupta-26.github.io/" target="_blank" rel="noopener noreferrer">Saumya Gupta</a>,
+                    <a href="https://github.com/ScottBiggs2" target="_blank" rel="noopener noreferrer">Scott Biggs</a>,
+                    <a href="https://moritz-laber.github.io/" target="_blank" rel="noopener noreferrer">Moritz Laber</a>,
+                    <a href="https://zohairshafi.github.io/" target="_blank" rel="noopener noreferrer">Zohair Shafi</a>,
+                    <a href="../index.html" target="_blank" rel="noopener noreferrer">Robin Walters</a>,
+                    <a href="https://github.com/talismanbrandi" target="_blank" rel="noopener noreferrer">Ayan Paul</a>
+                    </div>
+
+                    <div class="periodical">
+                         <em>
+                        The Fourteenth International Conference on Learning Representations 14204 (ICLR), 2026
+                         </em>
+                    </div>
+
+
+                    <div class="links">
+                        <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
+                        <a href="https://openreview.net/pdf?id=fOwsr1VTi8" class="btn btn-sm z-depth-0" role="button">PDF</a>
+                        <a href="https://openreview.net/forum?id=fOwsr1VTi8&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICLR.cc%2F2026%2FConference%2FAuthors%23your-submissions)" class="btn btn-sm z-depth-0" role="button">Webpage</a>
+                    </div>
+
+<!-- Hidden abstract block -->
+    <div class="abstract hidden">
+        <p>Building efficient and effective generative models for neural network weights has been a research focus of significant interest that faces challenges posed by the high-dimensional weight spaces of modern neural networks and their symmetries. Several prior generative models are limited to generating partial neural network weights, particularly for larger models, such as ResNet and ViT. Those that do generate complete weights struggle with generation speed or require finetuning of the generated models. In this work, we present \ours, a Flow Matching model that operates directly in weight space to generate diverse and high-accuracy neural network weights for a variety of architectures, neural network sizes, and data modalities. The neural networks generated by \ours do not require fine-tuning to perform well and can scale to large networks. We apply Git Re-Basin and TransFusion for neural network canonicalization in the context of generative weight models to account for the impact of neural network permutation symmetries and to improve generation efficiency for larger model sizes. The generated networks excel at transfer learning, and ensembles of hundreds of neural networks can be generated in minutes, far exceeding the efficiency of diffusion-based methods. DeepWeightFlow models pave the way for more efficient and scalable generation of diverse sets of neural networks.</p>
+</div>
+<!-- Hidden bibtex block -->
+</div>
+</div>
+</li>
+</ol>
+
+
+
+
+
+<h2 class="year">2026</h2>
+    <ol class="bibliography">
+        <li>
+            <div class="row">
+                 <div class="col-sm-3 abbr">
+                 <abbr class="badge">ICLR 2026</abbr>
+                 <img src="/publications/images/universality.png" alt="Project Image" style="object-fit: contain;">
+                </div>
+
+                 <div id="iClarify" class="col-sm-8">
+                    <div class="title">On Universality of Deep Equivariant Networks</div>
+                    <div class="author">
+                    <a href="https://marco-pacini.github.io/" target="_blank" rel="noopener noreferrer">Marco Pacini</a>,
+                    <a href="https://bsky.app/profile/mirceasci.bsky.social" target="_blank" rel="noopener noreferrer">Mircea Petrache</a>,
+                    <a href=https://it.linkedin.com/in/brunolepri" target="_blank" rel="noopener noreferrer">Bruno Lepri</a>,
+                    <a href="https://www.linkedin.com/in/shubhendu-trivedi-8710169" target="_blank" rel="noopener noreferrer">Shubhendu Trivedi</a>,
+                    <a href="../index.html" target="_blank" rel="noopener noreferrer">Robin Walters</a>
+                    </div>
+
+                    <div class="periodical">
+                         <em>
+                        The Fourteenth International Conference on Learning Representations 14204 (ICLR), 2026
+                         </em>
+                    </div>
+
+
+                    <div class="links">
+                        <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
+                        <a href="https://openreview.net/pdf?id=Q2D1PI6zY1" class="btn btn-sm z-depth-0" role="button">PDF</a>
+                        <a href="https://openreview.net/forum?id=Q2D1PI6zY1&referrer=%5BAuthor%20Console%5D(%2Fgroup%3Fid%3DICLR.cc%2F2026%2FConference%2FAuthors%23your-submissions)" class="btn btn-sm z-depth-0" role="button">Webpage</a>
+                    </div>
+
+<!-- Hidden abstract block -->
+    <div class="abstract hidden">
+        <p>Universality results for equivariant neural networks remain rare. Those that do exist typically hold only in restrictive settings: either they rely on regular or higher-order tensor representations, leading to impractically high-dimensional hidden spaces, or they target specialized architectures, often confined to the invariant setting. This work develops a more general account. For invariant networks, we establish a universality theorem under separation constraints, showing that the addition of a fully connected readout layer secures approximation within the class of separation-constrained continuous functions. For equivariant networks, where results are even scarcer, we demonstrate that standard separability notions are inadequate and introduce the sharper criterion of entry-wise separability. We show that with sufficient depth or with the addition of appropriate readout layers, equivariant networks attain universality within the entry-wise separable regime. Together with prior results showing the failure of universality for shallow models, our findings identify depth and readout layers as a decisive mechanism for universality, additionally offering a unified perspective that subsumes and extends earlier specialized results.</p>
+</div>
+<!-- Hidden bibtex block -->
+</div>
+</div>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+<!--------------------- ^ ROGERS HOLLOW EDIT ^ ------------------->
+
+
+
+
 <h2 class="year">2026</h2>
     <ol class="bibliography">
         <li>
@@ -163,7 +418,7 @@
                     <a href="https://ebrmn.space/" target="_blank" rel="noopener noreferrer">Edward Berman</a>,
                     <a href="https://jakegines.in/" target="_blank" rel="noopener noreferrer">Jacob Ginesin</a>,
                     <a href="https://marco-pacini.github.io/" target="_blank" rel="noopener noreferrer">Marco Pacini</a>,
-                    <a href="" target="_blank" rel="noopener noreferrer">Robin Walters</a>
+                    <a href="../index.html" target="_blank" rel="noopener noreferrer">Robin Walters</a>
                     </div>
 
                     <div class="periodical">
@@ -210,7 +465,7 @@
                     <a href="https://pointw.github.io/" target="_blank" rel="noopener noreferrer">Dian Wang</a>
                     <a href="https://haojhuang.github.io/" target="_blank" rel="noopener noreferrer">Haojie Huang</a>
                     <a href="https://zxp-s-works.github.io/" target="_blank" rel="noopener noreferrer">Xupeng Zhu</a>
-                    <a href="" target="_blank" rel="noopener noreferrer">Robin Walters</a>
+                    <a href="../index.html" target="_blank" rel="noopener noreferrer">Robin Walters</a>
                     <a href="https://helpinghandslab.netlify.app/people/" target="_blank" rel="noopener noreferrer">Robert Platt</a>
                     </div>
 
