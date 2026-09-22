@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CS 7180: Geometric Deep Learning &middot; Robin Walters</title>
+<meta name="description" content="Syllabus and reading list for CS 7180, Geometric Deep Learning.">
+<meta name="author" content="Robin Walters">
+<link rel="canonical" href="https://www.robinwalters.com/teaching.html">
+<meta property="og:title" content="CS 7180: Geometric Deep Learning &middot; Robin Walters">
+<meta property="og:description" content="Syllabus and reading list for CS 7180, Geometric Deep Learning.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.robinwalters.com/teaching.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="icon" href="../images/favicon.png">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+
+<aside class="rail">
+  <a class="mark" href="../index.html">
+    <img src="../images/logo.png" alt="Geometric Learning Lab at Northeastern" width="168" height="90">
+  </a>
+  <p class="name"><a href="../index.html">Robin Walters</a></p>
+  <p class="role">Assistant Professor, Khoury College of Computer Sciences, Northeastern University</p>
+  <nav aria-label="Main"><ul class="nav"><li><a href="../index.html">About</a></li>
+<li><a href="../publications.html">Research</a></li>
+<li><a href="../lab.html">Lab</a></li>
+<li><a href="../teaching.html" aria-current="page">Teaching</a></li></ul></nav>
+  <div class="rail-contact">
+<a href="mailto:r.walters@northeastern.edu">r.walters@northeastern.edu</a><br>
+<span>177 Huntington Ave<br>Boston, MA 02115</span>
+<div class="elsewhere">
+<a href="../Robin_Walters_CV.pdf">CV</a>
+<a href="https://scholar.google.com/citations?user=fnprJmUAAAAJ&amp;hl=en">Scholar</a>
+<a href="https://github.com/rsfwalters">GitHub</a>
+<a href="https://twitter.com/robinsfwalters">Twitter</a>
+</div>
+</div>
+</aside>
+
+<main class="main" id="main">
+<h1 class="page-title">CS 7180: Geometric Deep Learning</h1>
+<p class="page-intro">Special Topics in AI &middot; Spring 2023. The course ran again in Fall 2025; this page is the 2023 syllabus.</p>
+<div class="section"><h2>Syllabus</h2><div class="coursepage prose" style="max-width:none;font-size:16.5px">
+<h3>Course Description</h3>
+<p>
+                Exploiting geometric structure has led to the development of machine learning methods which generalize better to new situations, learn using less data, and make more physically accurate predictions. Examples of geometric techniques in deep learning include
+                graph neural networks, convolutional neural networks, equivariant neural networks, and embeddings into Reimannian manifolds. These methods incorporate constraints to preserve geometric structure such as symmetry, curvature, or distance.
+                This course will first provide students with the mathematical background in group theory, representation theory, and Riemannian geometry necessary to understand geometric deep learning methods. We will then study various modern techniques
+                such as steerable convolutions, group convolutions, tensor field networks, and hyperbolic networks based on these principles. Last, we will explore the critical applications of geometric deep learning including dynamics, medical diagnosis,
+                chemistry, and robotics.
+            </p>
+<h3>Course Details</h3>
+<p>
+                Lecturer: Professor <a href="../index.html">Robin Walters</a> (r.walters@northeastern.edu)
+                <br/> TA: Ondrej Biza (biza.o@northeastern.edu)
+                <br/> Time: 11:45 AM - 1:25 PM MT
+                <br/> Location: Kariotis Hall 209
+                <br/> Piazza: <a href="https://piazza.com/northeastern/spring2023/cs7180">https://piazza.com/northeastern/spring2023/cs7180</a>
+<br/> Office Hours:
+                <br/> Ondrej: ISEC room 655, Tuesday 4 to 5:30 PM, Friday 10 to 11:30 AM. Exception: Jan 17 - online on Teams.
+            </p>
+<h3>Prerequisites</h3>
+<p>
+                1. CS 6140 Machine Learning
+                <br/> 2. Familiar with linear algebra, optimization
+                <br/> 3. Proficient with programming in Python
+                <br/> 4. Proof writing ability
+            </p>
+<h3>Schedule: (Graph, Grids, Groups, Gauges, Geodesics)</h3>
+<table id="schedule">
+<tr>
+<th>Date</th>
+<th>Content</th>
+<th>Reading Materials</th>
+<th>Due on Fridays</th>
+</tr>
+<tr>
+<td colspan="4" id="heading">Introduction</td>
+</tr>
+<tr>
+<td id="week">Week 1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Jan. 9</td>
+<td>Introduction to Geometric Deep Learning</td>
+<td>DLB Chapter 6</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Jan. 12</td>
+<td>Neural Networks Review</td>
+<td>DLB Chapter 8</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="4" id="heading">GNNs and CNNs</td>
+</tr>
+<tr>
+<td id="week">Week 2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Jan. 16</td>
+<td id="no-class">Martin Luther King Jr.'s day, no class</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Jan. 19</td>
+<td>Grids: Convolutional Networks</td>
+<td>DLB Chapter 10</td>
+<td></td>
+</tr>
+<tr>
+<td id="week">Week 3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Jan. 23</td>
+<td>Graphs: Graph Neural Networks</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Jan. 26</td>
+<td id="discussion">Discussion: CNNs &amp; GNNs</td>
+<td></td>
+<td>HW1 due: CNN and GNN programming assignment</td>
+</tr>
+<tr>
+<td colspan="4" id="heading">Equivariant NNs</td>
+</tr>
+<tr>
+<td id="week">Week 4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Jan. 30</td>
+<td>Introduction to Symmetry and Deep Learning</td>
+<td>Intro to Group Theory 1</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feb. 2</td>
+<td></td>
+<td>Intro to Group Theory 2</td>
+<td></td>
+</tr>
+<tr>
+<td id="week">Week 5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feb. 6</td>
+<td>Group Convolutional Networks</td>
+<td>Deep Sets and Permutation Invariance</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feb. 9</td>
+<td id="discussion">Discussion: Group-NNs</td>
+<td></td>
+<td>HW2 due: Group problem set</td>
+</tr>
+<tr>
+<td id="week">Week 6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feb. 13</td>
+<td>Intro to Rep Theory 1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feb. 16</td>
+<td>Intro to Rep Theory 1</td>
+<td></td>
+<td>Project Proposal due</td>
+</tr>
+<tr>
+<td id="week">Week 7</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feb. 20</td>
+<td id="no-class">President's day, no class</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feb. 23</td>
+<td>Steerable CNNs</td>
+<td></td>
+<td>HW 3 due: Rep theory Problem Set</td>
+</tr>
+<tr>
+<td id="week">Week 8</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feb. 27</td>
+<td id="discussion">Discussion: Steerable CNNs</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mar. 2</td>
+<td>Spherical Harmonics; Clebsh-Gordon 1</td>
+<td></td>
+<td>HW4 due: Steerable Programming assignment</td>
+</tr>
+<tr>
+<td id="week">Week 9</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mar. 6</td>
+<td id="no-class">Spring break, no class</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mar. 9</td>
+<td id="no-class">Spring break, no class</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td id="week">Week 10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mar. 13</td>
+<td>Spherical Harmonics; Clebsh-Gordon 2</td>
+<td>Tensor Field Networks</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mar. 16</td>
+<td>Tensor Field Networks</td>
+<td></td>
+<td>First milestone due</td>
+</tr>
+<tr>
+<td id="week">Week 11</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mar. 20</td>
+<td id="discussion">Discussion: SE(3)-equivariant methods</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mar. 23</td>
+<td id="guest-lecture">Guest Lecture</td>
+<td>Equivariance in Robotics: Ondrej, Dian</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="4" id="heading">Gauge-Equivariance and Geodesics</td>
+</tr>
+<tr>
+<td id="week">Week 12</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mar. 27</td>
+<td>Gauge-Equivariance</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Mar. 30</td>
+<td id="discussion">Discussion: gauge-equivariance</td>
+<td></td>
+<td>Second milestone due</td>
+</tr>
+<tr>
+<td id="week">Week 13</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Apr. 3</td>
+<td>Reimannian Geometry</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Apr. 6</td>
+<td>Non-Euclidean Networks and Embeddings</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td id="week">Week 14</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Apr. 10</td>
+<td id="discussion">Discussion: non-euclidian networks</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Apr. 13</td>
+<td id="guest-lecture">Guest Lecture</td>
+<td>John Park -- Gauge Equivariant Networks</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="4" id="heading">Final Evaluation</td>
+</tr>
+<tr>
+<td id="week">Week 15</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Apr. 17</td>
+<td id="no-class">Patriot's day, no class</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Apr. 20</td>
+<td>Project presentation day</td>
+<td></td>
+<td>final report due</td>
+</tr>
+<tr>
+<td>Apr. 21</td>
+<td>Project presentation day (optional makeup)</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+<h3>Course Assessment</h3>
+<p>
+                1. 50% final project.
+                <br/> 2. 25% HW assignments.
+                <br/> 3. 25% class paper presentation and class participation.
+            </p>
+<h3>Final Project: (Suggested Topics)</h3>
+<p>
+<a href="https://nips.cc/Conferences/2018/PaperInformation/StyleFiles">[Latex Template]</a>
+<br/> 1. Coming soon.
+            </p>
+<h3>Geometric Deep Learning References</h3>
+<p>
+                1. <a href="https://arxiv.org/abs/2104.13478">Geometric Deep Learning: Grids, Groups, Graphs, Geodesics, and Gauges</a>
+<br/> 2. <a href="https://github.com/Chen-Cai-OSU/awesome-equivariant-network">Awesome Equivariant Neural Networks</a>
+<br/> 3. <a href="https://geometricdeeplearning.com/lectures/">AMMI Course of Geometric Deep Learning</a>
+<br/> 4. <a href="https://uvagedl.github.io/">Erik Bekkers - UvA - Geometric Deep Learning Course</a>
+<br/> 5. <a href="https://arxiv.org/abs/2010.10952">[2010.10952] A Wigner-Eckart Theorem for Group Equivariant Convolution Kernels</a>
+</p>
+<h3>Group Theory and Representation Theory References</h3>
+<p>
+                1. <a href="https://drive.google.com/file/d/1uO_6EQ_JwlPuk9hb7FVGDhL8OiGRFQMr/view">Algebra, Second Edition, Michael Artin.pdf</a>
+<br/> 2. <a href="https://onesearch.library.northeastern.edu/discovery/fulldisplay?context=L&amp;vid=01NEU_INST:NU&amp;search_scope=SnellCatalog&amp;tab=Everything&amp;docid=alma9951401785401401">Artin - Algebra at Northeastern</a>
+<br/> 3. <a href="https://arxiv.org/pdf/2004.05154.pdf">THEORETICAL ASPECTS OF GROUP EQUIVARIANT  NEURAL NETWORKS</a>
+<br/> 4. <a href="https://www.amazon.com/Lie-Groups-Algebras-Representations-Introduction/dp/3319134663">Hall -- Lie Groups</a>
+</p>
+<h3>Deep Learning References</h3>
+<p>
+                1. <a href="https://www.deeplearningbook.org/front_matter.pdf">Deep Learning Book</a>
+<br/> 2. <a href="https://www.coursera.org/specializations/deep-learning">Deep Learning Course (Coursera)</a>
+<br/> 3. <a href="https://www.cs.toronto.edu/~graves/preprint.pdf">Recurrent Neural Network</a>
+<br/> 4. <a href="https://hastie.su.domains/Papers/ESLII.pdf">The Elements of Statistical Learning</a>
+<br/> 5. <a href="http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf">Pattern Recognition and Machine Learning</a>
+</p>
+</div></div>
+</main>
+
+<footer class="foot">
+  <span>Geometric Learning Lab &middot; Northeastern University</span>
+  <span>Last updated September 2026</span>
+</footer>
+
+</div>
+<script src="../js/site.js"></script>
+</body>
+</html>
