@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Three-year raise cost calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFBF8; --ink:#1B2B40; --ink-2:#4D5B6E; --rule:#D9DDE3; --panel:#F0F2EE;
+  --y1:#1F5A8C; --y2:#2E7A55; --y3:#9A5B12; --total:#1B2B40;
+  --y1-bg:#E3EDF6; --y2-bg:#E2F0E8; --y3-bg:#F6ECDD; --err:#A32D2D;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#12161C; --ink:#E8ECF1; --ink-2:#A6B0BD; --rule:#2C333D; --panel:#1A2029;
+    --y1:#7FB2E0; --y2:#7CC9A0; --y3:#E3AE63; --total:#E8ECF1;
+    --y1-bg:#1B2C3D; --y2-bg:#18302A; --y3-bg:#352816; --err:#F09595;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12161C; --ink:#E8ECF1; --ink-2:#A6B0BD; --rule:#2C333D; --panel:#1A2029;
+  --y1:#7FB2E0; --y2:#7CC9A0; --y3:#E3AE63; --total:#E8ECF1;
+  --y1-bg:#1B2C3D; --y2-bg:#18302A; --y3-bg:#352816; --err:#F09595;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.55;font-variant-numeric:tabular-nums}
+main{max-width:660px;margin:0 auto;padding:2rem 1.25rem 3rem}
+h1{font-size:1.75rem;line-height:1.2;font-weight:700;margin:0 0 .5rem;letter-spacing:-0.01em}
+.lede{color:var(--ink-2);margin:0 0 2rem;max-width:60ch}
+h2{font-size:1.05rem;font-weight:700;margin:2.25rem 0 .75rem}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.25rem}
+button{font:inherit;font-size:.9rem;color:var(--ink);background:transparent;border:1px solid var(--rule);
+  border-radius:6px;padding:.45rem .8rem;cursor:pointer}
+button:hover{border-color:var(--ink-2)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--y1);outline-offset:2px}
+.yr{display:grid;grid-template-columns:4.5rem minmax(0,1fr) 6.5rem;align-items:center;gap:12px;
+  padding:.7rem .9rem;border-radius:8px;margin:0 0 8px}
+.yr label{font-weight:500}
+.yr[data-y="1"]{background:var(--y1-bg)} .yr[data-y="1"] label{color:var(--y1)}
+.yr[data-y="2"]{background:var(--y2-bg)} .yr[data-y="2"] label{color:var(--y2)}
+.yr[data-y="3"]{background:var(--y3-bg)} .yr[data-y="3"] label{color:var(--y3)}
+.yr[data-y="1"] input[type=range]{accent-color:var(--y1)}
+.yr[data-y="2"] input[type=range]{accent-color:var(--y2)}
+.yr[data-y="3"] input[type=range]{accent-color:var(--y3)}
+input[type=range]{width:100%}
+.money{display:flex;align-items:center;border:1px solid var(--rule);border-radius:6px;background:var(--paper);padding:0 .5rem}
+.money span{color:var(--ink-2)}
+.money input{font:inherit;color:var(--ink);background:transparent;border:0;width:100%;padding:.4rem .25rem;font-variant-numeric:tabular-nums}
+.money input:focus-visible{outline:none}
+.money:focus-within{outline:2px solid var(--y1);outline-offset:1px}
+.err{color:var(--err);font-size:.9rem;min-height:1.3rem;margin:.25rem 0 0}
+.total{margin:1.5rem 0 0;padding:1.25rem 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 1.5rem}
+.total .lab{color:var(--ink-2)}
+.total .num{font-size:2.6rem;font-weight:700;letter-spacing:-0.02em;line-height:1.1}
+.total .cmp{color:var(--ink-2);font-size:.95rem;width:100%}
+.formula{background:var(--panel);border-radius:8px;padding:1.1rem 1.1rem;overflow-x:auto}
+.step{margin:0 0 1rem}
+.step:last-child{margin:0}
+.step .cap{color:var(--ink-2);font-size:.9rem;margin:0 0 .3rem}
+.eq{font-size:1.05rem;line-height:1.9;white-space:nowrap}
+.eq b{font-weight:700}
+.t1{color:var(--y1);font-weight:500} .t2{color:var(--y2);font-weight:500} .t3{color:var(--y3);font-weight:500}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:.55rem .25rem;border-bottom:1px solid var(--rule)}
+th{color:var(--ink-2);font-weight:500}
+td.r,th.r{text-align:right}
+tfoot td{font-weight:700;border-bottom:0;border-top:2px solid var(--ink)}
+.calib{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.calib label{display:block;font-size:.9rem;color:var(--ink-2);margin:0 0 .3rem}
+.note{color:var(--ink-2);font-size:.9rem;margin:.75rem 0 0;max-width:62ch}
+@media (max-width:480px){
+  .yr{grid-template-columns:4rem minmax(0,1fr) 5.75rem;gap:8px;padding:.6rem .7rem}
+  .total .num{font-size:2.1rem}
+  .eq{font-size:.95rem}
+}
+</style>
+</head>
+<body>
+<main>
+<h1>Three-year raise cost calculator</h1>
+<p class="lede">Enter the hourly raise for each year of the contract. Raises stack: the year 1 raise is paid in all three years, the year 2 raise in two, and the year 3 raise in one.</p>
+
+<div class="presets" role="group" aria-label="Example scenarios">
+  <button data-p="0.75,0.75,0.75">$0.75 each year</button>
+  <button data-p="0.80,0.80,0.80">$0.80 each year</button>
+  <button data-p="1,1,1">$1.00 each year</button>
+  <button data-p="1.25,1,0.80">$1.25 / $1.00 / $0.80</button>
+</div>
+
+<div class="yr" data-y="1">
+  <label for="r1n">Year 1</label>
+  <input type="range" id="r1" min="0" max="3" step="0.05" value="0.75" aria-label="Year 1 raise slider">
+  <div class="money"><span>$</span><input type="number" id="r1n" min="0" step="0.01" value="0.75" inputmode="decimal"></div>
+</div>
+<div class="yr" data-y="2">
+  <label for="r2n">Year 2</label>
+  <input type="range" id="r2" min="0" max="3" step="0.05" value="0.75" aria-label="Year 2 raise slider">
+  <div class="money"><span>$</span><input type="number" id="r2n" min="0" step="0.01" value="0.75" inputmode="decimal"></div>
+</div>
+<div class="yr" data-y="3">
+  <label for="r3n">Year 3</label>
+  <input type="range" id="r3" min="0" max="3" step="0.05" value="0.75" aria-label="Year 3 raise slider">
+  <div class="money"><span>$</span><input type="number" id="r3n" min="0" step="0.01" value="0.75" inputmode="decimal"></div>
+</div>
+<p class="err" id="err" role="alert"></p>
+
+<div class="total" aria-live="polite">
+  <span class="lab">Total added cost over 3 years</span>
+  <span class="num" id="tot">$135,000</span>
+  <span class="cmp" id="cmp"></span>
+</div>
+
+<h2>The formula, with your numbers</h2>
+<div class="formula">
+  <div class="step">
+    <p class="cap">Step 1. Cost of a $1/hour raise for one year, across all employees (H)</p>
+    <div class="eq" id="eqH"></div>
+  </div>
+  <div class="step">
+    <p class="cap">Step 2. Total cost = H × (3 × year 1 raise + 2 × year 2 raise + 1 × year 3 raise)</p>
+    <div class="eq" id="eqT"></div>
+  </div>
+</div>
+
+<h2>Year by year</h2>
+<table>
+  <thead><tr><th>Year</th><th>Above today's wage</th><th class="r">Added cost</th></tr></thead>
+  <tbody id="yrs"></tbody>
+  <tfoot><tr><td colspan="2">Total</td><td class="r" id="tot2"></td></tr></tfoot>
+</table>
+
+<h2>Starting point</h2>
+<div class="calib">
+  <div><label for="bc">Employer's cost estimate</label>
+    <div class="money"><span>$</span><input type="number" id="bc" value="135000" step="1000" min="0" inputmode="decimal"></div></div>
+  <div><label for="br">For a raise each year of</label>
+    <div class="money"><span>$</span><input type="number" id="br" value="0.75" step="0.01" min="0" inputmode="decimal"></div></div>
+</div>
+<p class="note">Based on the employer's estimate that a 75¢/hour raise in each of three years costs $135,000. Change these if the employer revises its figure.</p>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var usd0=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+  var usd2=function(n){return '$'+n.toFixed(2)};
+  var num=function(n){return Math.round(n).toLocaleString('en-US')};
+  var ids=['r1','r2','r3'];
+  function read(id){var v=parseFloat($(id).value);return v};
+  function calc(){
+    var r=ids.map(function(i){return read(i+'n')});
+    var bc=read('bc'), br=read('br');
+    if(r.some(function(x){return isNaN(x)||x<0})){$('err').textContent='Enter a raise of $0.00 or more for each year.';return}
+    if(isNaN(bc)||bc<=0||isNaN(br)||br<=0){$('err').textContent='Enter a cost estimate and raise above zero in the starting point.';return}
+    $('err').textContent='';
+    var H=bc/(br*6);
+    var w=3*r[0]+2*r[1]+1*r[2];
+    var t=H*w;
+    $('tot').textContent=usd0.format(t);
+    $('tot2').textContent=usd0.format(t);
+    var diff=t-bc;
+    $('cmp').textContent=Math.abs(diff)<0.5?'Same as the employer\u2019s estimate.':
+      usd0.format(Math.abs(diff))+(diff>0?' more':' less')+' than the employer\u2019s '+usd0.format(bc)+' ('+(t/bc*100).toFixed(1)+'% of it).';
+    $('eqH').innerHTML='H = $'+num(bc)+' \u00f7 ($'+br.toFixed(2)+' \u00d7 6) = <b>$'+num(H)+'</b>';
+    $('eqT').innerHTML='Total = $'+num(H)+' \u00d7 (3 \u00d7 <span class="t1">'+usd2(r[0])+'</span> + 2 \u00d7 <span class="t2">'+usd2(r[1])+'</span> + 1 \u00d7 <span class="t3">'+usd2(r[2])+'</span>)<br>'+
+      '<span style="visibility:hidden">Total </span>= $'+num(H)+' \u00d7 ('+(3*r[0]).toFixed(2)+' + '+(2*r[1]).toFixed(2)+' + '+(r[2]).toFixed(2)+')<br>'+
+      '<span style="visibility:hidden">Total </span>= $'+num(H)+' \u00d7 '+w.toFixed(2)+' = <b>'+usd0.format(t)+'</b>';
+    var cum=[r[0],r[0]+r[1],r[0]+r[1]+r[2]];
+    var parts=['<span class="t1">'+usd2(r[0])+'</span>',
+      '<span class="t1">'+usd2(r[0])+'</span> + <span class="t2">'+usd2(r[1])+'</span>',
+      '<span class="t1">'+usd2(r[0])+'</span> + <span class="t2">'+usd2(r[1])+'</span> + <span class="t3">'+usd2(r[2])+'</span>'];
+    $('yrs').innerHTML=cum.map(function(c,i){
+      return '<tr><td>'+(i+1)+'</td><td>'+parts[i]+(i?' = '+usd2(c):'')+'/hr</td><td class="r">'+usd0.format(c*H)+'</td></tr>';
+    }).join('');
+  }
+  ids.forEach(function(i){
+    $(i).addEventListener('input',function(){$(i+'n').value=parseFloat($(i).value).toFixed(2);calc()});
+    $(i+'n').addEventListener('input',function(){var v=parseFloat($(i+'n').value);if(!isNaN(v))$(i).value=Math.min(Math.max(v,0),3);calc()});
+  });
+  ['bc','br'].forEach(function(i){$(i).addEventListener('input',calc)});
+  document.querySelectorAll('[data-p]').forEach(function(b){
+    b.addEventListener('click',function(){
+      b.getAttribute('data-p').split(',').map(Number).forEach(function(v,k){$(ids[k]).value=v;$(ids[k]+'n').value=v.toFixed(2)});
+      calc();
+    });
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
