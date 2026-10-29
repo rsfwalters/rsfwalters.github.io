@@ -56,17 +56,20 @@ h2{font-size:1rem;font-weight:600;margin:0 0 4px}
 .sw.dash{height:0;border-top:2px dashed var(--base);border-radius:0;width:16px}
 .chart{position:relative;height:300px}
 .chart.short{height:210px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.row>*,.lump>*{min-width:0}
+@media (max-width:460px){.row{grid-template-columns:minmax(0,1fr)}}
 label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px}
 input[type=number],input[type=month],input[type=text]{
-  width:100%;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);
+  width:100%;min-width:0;max-width:100%;display:block;font:inherit;font-size:16px;color:var(--ink);background:var(--field);border:1px solid var(--line);
   border-radius:8px;padding:9px 10px;min-height:42px}
 input:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 input[type=range]{width:100%;accent-color:var(--principal);margin:12px 0 4px}
 .money{position:relative}
 .money::before{content:"$";position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
 .money input{padding-left:22px}
-.lump{display:grid;grid-template-columns:1fr 1fr 42px;gap:8px;align-items:end;margin-bottom:8px}
+.lump{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 42px;gap:8px;align-items:end;margin-bottom:12px}
+@media (max-width:460px){.lump{grid-template-columns:minmax(0,1fr) 42px;grid-template-areas:'a x' 'm m'}.lump>:nth-child(1){grid-area:a}.lump>:nth-child(2){grid-area:m}.lump>:nth-child(3){grid-area:x}}
 button{font:inherit;cursor:pointer;border-radius:8px}
 .add{background:transparent;color:var(--accent);border:1px dashed var(--line);padding:9px 12px;width:100%;margin-top:4px}
 .rm{background:var(--field);border:1px solid var(--line);color:var(--muted);height:42px;font-size:1.2rem;line-height:1}
@@ -117,7 +120,7 @@ footer{font-size:.8rem;color:var(--muted);text-align:center;margin-top:24px}
         <div><label for="final">Final payment (maturity)</label><input id="final" type="month" data-k="final"></div>
       </div>
       <p class="derived" id="derived"></p>
-      <p class="note">Use the current principal balance from your statement, not the payoff amount, which includes accrued interest. Leave principal &amp; interest blank to calculate it from balance, rate and final payment date. Escrow &amp; other (taxes, insurance, PMI) is held flat and stops when the loan does. Everything runs in your browser; nothing you enter is sent anywhere.</p>
+      <p class="note">The default balance is estimated from the Oct 29, 2026 payoff figure ($1,223,529.74) minus accrued interest, and rolls forward on the regular schedule each month. Replace it with the principal balance from a statement when you have one; the payoff amount includes accrued interest, so don’t use that. Leave principal &amp; interest blank to calculate it from balance, rate and final payment date. Escrow &amp; other (taxes, insurance, PMI) is held flat and stops when the loan does. Everything runs in your browser; nothing you enter is sent anywhere.</p>
       <div class="foot"><button class="ghost" id="share" type="button">Copy link to this scenario</button> <button class="ghost" id="reset" type="button">Reset</button></div>
     </details>
   </section>
@@ -179,9 +182,17 @@ footer{font-size:.8rem;color:var(--muted);text-align:center;margin-top:24px}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
 (function(){
-const KEY='mortgage-explorer-v1';
+const KEY='mortgage-explorer-v2';
 const now=new Date(), nx=now.getFullYear()*12+now.getMonth()+1;
-const DEFAULTS={balance:400000,rate:6.5,other:600,pi:'',next:ms0(nx),final:ms0(nx+359),extra:0,extraStart:ms0(nx),lumps:[]};
+// Robin's loan as of the Nov 2026 payment; rolled forward on the regular schedule if opened later.
+const ANCHOR={balance:1218230,rate:5.5,next:2026*12+10,final:'2056-04',other:2508.60};
+const DEFAULTS=(function(){
+  const r=ANCHOR.rate/1200, end=2056*12+3;
+  const P=ANCHOR.balance*r/(1-Math.pow(1+r,-(end-ANCHOR.next+1)));
+  let B=ANCHOR.balance, m=ANCHOR.next;
+  while(m<nx&&m<end){B-=P-B*r;m++}
+  return {balance:Math.round(B*100)/100,rate:ANCHOR.rate,other:ANCHOR.other,pi:'',next:ms0(m),final:ANCHOR.final,extra:0,extraStart:ms0(m),lumps:[]};
+})();
 function ms0(i){return Math.floor(i/12)+'-'+String(i%12+1).padStart(2,'0')}
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const $=id=>document.getElementById(id);
