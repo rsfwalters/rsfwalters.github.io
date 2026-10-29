@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mortgage payoff explorer</title>
+<meta name="description" content="See your mortgage payments by year and the effect of extra principal payments.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --ink:#17202B; --muted:#5A6574; --line:#DCE1E8; --field:#F7F9FB;
+  --principal:#2B7663; --extra:#86CBAE; --interest:#C78E2C; --other:#A7B0BE; --base:#8790A0; --accent:#1E5DBA;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#13171D; --surface:#1C2229; --ink:#E7EBF0; --muted:#9AA4B1; --line:#2D3640; --field:#161B21;
+    --principal:#4DB394; --extra:#A3E4C8; --interest:#E3AE4C; --other:#6B778A; --base:#8E98A8; --accent:#7EABF2;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#13171D; --surface:#1C2229; --ink:#E7EBF0; --muted:#9AA4B1; --line:#2D3640; --field:#161B21;
+  --principal:#4DB394; --extra:#A3E4C8; --interest:#E3AE4C; --other:#6B778A; --base:#8E98A8; --accent:#7EABF2;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.5 "Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%}
+main{max-width:780px;margin:0 auto;padding:22px 16px 56px}
+h1{font-size:1.05rem;font-weight:600;color:var(--muted);margin:0 0 6px;letter-spacing:0}
+.verdict{font-size:1.45rem;line-height:1.32;font-weight:500;margin:0 0 18px;max-width:34ch;letter-spacing:-0.012em}
+.verdict b{font-weight:700}
+.verdict .save{color:var(--principal)}
+.err{background:color-mix(in srgb,var(--interest) 18%,transparent);border-radius:8px;padding:10px 12px;margin:0 0 16px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:22px}
+@media (min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--surface);padding:12px 14px}
+.stat span{display:block;font-size:.8rem;color:var(--muted)}
+.stat strong{display:block;font-size:1.15rem;font-weight:600;margin-top:2px}
+.stat small{display:block;font-size:.78rem;color:var(--muted)}
+section{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+h2{font-size:1rem;font-weight:600;margin:0 0 4px}
+.sub{font-size:.85rem;color:var(--muted);margin:0 0 12px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.85rem;margin:0 0 10px;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.sw.dash{height:0;border-top:2px dashed var(--base);border-radius:0;width:16px}
+.chart{position:relative;height:300px}
+.chart.short{height:210px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px}
+input[type=number],input[type=month],input[type=text]{
+  width:100%;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);
+  border-radius:8px;padding:9px 10px;min-height:42px}
+input:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+input[type=range]{width:100%;accent-color:var(--principal);margin:12px 0 4px}
+.money{position:relative}
+.money::before{content:"$";position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.money input{padding-left:22px}
+.lump{display:grid;grid-template-columns:1fr 1fr 42px;gap:8px;align-items:end;margin-bottom:8px}
+button{font:inherit;cursor:pointer;border-radius:8px}
+.add{background:transparent;color:var(--accent);border:1px dashed var(--line);padding:9px 12px;width:100%;margin-top:4px}
+.rm{background:var(--field);border:1px solid var(--line);color:var(--muted);height:42px;font-size:1.2rem;line-height:1}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--muted);padding:7px 12px;font-size:.85rem}
+.block + .block{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+details summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--muted);font-weight:400;font-size:1.2rem}
+details[open] summary::after{content:"–"}
+details[open] summary{margin-bottom:12px}
+.derived{font-size:.88rem;color:var(--muted);margin:10px 0 0}
+.derived b{color:var(--ink);font-weight:600}
+.note{font-size:.8rem;color:var(--muted);margin:12px 0 0;max-width:68ch}
+.scroll{overflow-x:auto;margin:0 -16px;padding:0 16px}
+table{border-collapse:collapse;font-size:.85rem;width:100%;min-width:620px}
+th,td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:600;color:var(--muted);font-size:.78rem}
+tfoot td{font-weight:600;border-bottom:none}
+td.paid{color:var(--muted)}
+.foot{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px;margin-top:8px}
+footer{font-size:.8rem;color:var(--muted);text-align:center;margin-top:24px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Mortgage payoff explorer</h1>
+  <p class="verdict" id="verdict">Calculating…</p>
+  <div id="err" class="err" hidden></div>
+
+  <div class="stats">
+    <div class="stat"><span>Paid off</span><strong id="sPay">–</strong><small id="sPayB"></small></div>
+    <div class="stat"><span>Interest still to pay</span><strong id="sInt">–</strong><small id="sIntB"></small></div>
+    <div class="stat"><span>Interest saved</span><strong id="sSave">–</strong><small id="sTime"></small></div>
+    <div class="stat"><span>Saved per extra $1</span><strong id="sRatio">–</strong><small id="sX"></small></div>
+  </div>
+
+  <section>
+    <details open>
+      <summary>Your loan</summary>
+      <div class="row">
+        <div><label for="balance">Principal balance</label><div class="money"><input id="balance" type="number" inputmode="decimal" step="0.01" data-k="balance"></div></div>
+        <div><label for="rate">Interest rate (%)</label><input id="rate" type="number" inputmode="decimal" step="0.001" data-k="rate"></div>
+        <div><label for="other">Escrow &amp; other per month</label><div class="money"><input id="other" type="number" inputmode="decimal" step="0.01" data-k="other" placeholder="0"></div></div>
+        <div><label for="pi">Principal &amp; interest</label><div class="money"><input id="pi" type="number" inputmode="decimal" step="0.01" data-k="pi" placeholder="Calculated"></div></div>
+        <div><label for="next">Next payment</label><input id="next" type="month" data-k="next"></div>
+        <div><label for="final">Final payment (maturity)</label><input id="final" type="month" data-k="final"></div>
+      </div>
+      <p class="derived" id="derived"></p>
+      <p class="note">Use the current principal balance from your statement, not the payoff amount, which includes accrued interest. Leave principal &amp; interest blank to calculate it from balance, rate and final payment date. Escrow &amp; other (taxes, insurance, PMI) is held flat and stops when the loan does. Everything runs in your browser; nothing you enter is sent anywhere.</p>
+      <div class="foot"><button class="ghost" id="share" type="button">Copy link to this scenario</button> <button class="ghost" id="reset" type="button">Reset</button></div>
+    </details>
+  </section>
+
+  <section>
+    <h2>Payments by year</h2>
+    <p class="sub" id="yearSub">From your next payment onward. 2026 covers November and December only.</p>
+    <ul class="legend">
+      <li><i class="sw" style="background:var(--principal)"></i>Scheduled principal</li>
+      <li><i class="sw" style="background:var(--extra)"></i>Extra principal</li>
+      <li><i class="sw" style="background:var(--interest)"></i>Interest</li>
+      <li><i class="sw" style="background:var(--other)"></i>Escrow &amp; other</li>
+    </ul>
+    <div class="chart"><canvas id="yearChart" aria-label="Stacked bar chart of payments by year"></canvas></div>
+  </section>
+
+  <section>
+    <h2>Extra principal</h2>
+    <div class="block">
+      <label for="extra">Every month, on top of the regular payment</label>
+      <div class="row">
+        <div class="money"><input id="extra" type="number" inputmode="decimal" min="0" step="50" data-k="extra"></div>
+        <div><input id="extraStart" type="month" data-k="extraStart" aria-label="Starting month"></div>
+      </div>
+      <input id="extraRange" type="range" min="0" max="5000" step="50" aria-label="Monthly extra principal">
+    </div>
+    <div class="block">
+      <label>One-time payments</label>
+      <div id="lumps"></div>
+      <button class="add" id="addLump" type="button">Add a one-time payment</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Remaining balance</h2>
+    <ul class="legend">
+      <li><i class="sw" style="background:var(--principal)"></i>With extra payments</li>
+      <li><i class="sw dash"></i>Regular schedule</li>
+    </ul>
+    <div class="chart short"><canvas id="balChart" aria-label="Line chart of remaining balance"></canvas></div>
+  </section>
+
+
+  <section>
+    <details>
+      <summary>Year-by-year table</summary>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Year</th><th>Principal</th><th>Extra</th><th>Interest</th><th>Escrow &amp; other</th><th>Total paid</th><th>End balance</th><th>Interest saved</th></tr></thead>
+          <tbody id="tbody"></tbody>
+          <tfoot id="tfoot"></tfoot>
+        </table>
+      </div>
+    </details>
+  </section>
+  <footer>Estimates only; your servicer’s figures may differ slightly due to day-count and rounding.</footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+(function(){
+const KEY='mortgage-explorer-v1';
+const now=new Date(), nx=now.getFullYear()*12+now.getMonth()+1;
+const DEFAULTS={balance:400000,rate:6.5,other:600,pi:'',next:ms0(nx),final:ms0(nx+359),extra:0,extraStart:ms0(nx),lumps:[]};
+function ms0(i){return Math.floor(i/12)+'-'+String(i%12+1).padStart(2,'0')}
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const $=id=>document.getElementById(id);
+const usd=(v,d=0)=>(v<0?'−$':'$')+Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const mi=s=>{if(!s)return NaN;const[y,m]=s.split('-').map(Number);return y*12+m-1};
+const ms=i=>Math.floor(i/12)+'-'+String(i%12+1).padStart(2,'0');
+const ml=i=>MON[i%12]+' '+Math.floor(i/12);
+const dur=n=>{const y=Math.floor(n/12),m=n%12;const p=[];if(y)p.push(y+(y===1?' year':' years'));if(m)p.push(m+(m===1?' month':' months'));return p.join(' ')||'0 months'};
+const num=v=>{const x=parseFloat(v);return isFinite(x)?x:0};
+
+let S=load();
+function load(){
+  const q=new URLSearchParams(location.search);
+  if(q.has('b')){
+    const o=JSON.parse(JSON.stringify(DEFAULTS));
+    const map={b:'balance',r:'rate',pi:'pi',o:'other',n:'next',f:'final',x:'extra',xs:'extraStart'};
+    for(const k in map)if(q.has(k))o[map[k]]=q.get(k);
+    o.lumps=(q.get('l')||'').split(',').filter(Boolean).map(t=>{const[a,m]=t.split('@');return{amount:a,month:m}});
+    return o;
+  }
+  try{const r=localStorage.getItem(KEY);if(r)return Object.assign({},DEFAULTS,JSON.parse(r))}catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULTS));
+}
+function shareURL(){
+  const q=new URLSearchParams({b:S.balance,r:S.rate,o:S.other,n:S.next,f:S.final});
+  if(S.pi!=='')q.set('pi',S.pi);
+  if(num(S.extra)>0){q.set('x',S.extra);q.set('xs',S.extraStart)}
+  const l=(S.lumps||[]).filter(x=>num(x.amount)>0&&x.month).map(x=>x.amount+'@'+x.month).join(',');
+  if(l)q.set('l',l);
+  return location.origin+location.pathname+'?'+q.toString();
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+
+function derived(){
+  const r=num(S.rate)/1200, start=mi(S.next), end=mi(S.final);
+  const n=Math.max(1,end-start+1), B=num(S.balance);
+  const auto=r===0?B/n:B*r/(1-Math.pow(1+r,-n));
+  const pi=(S.pi!==''&&num(S.pi)>0)?num(S.pi):auto;
+  return {r,n,pi,auto,other:Math.max(0,num(S.other)),start};
+}
+
+function simulate(withExtras,d){
+  const {r,pi,other,start}=d;
+  let B=num(S.balance), m=start;
+  const lumps={};
+  if(withExtras)(S.lumps||[]).forEach(l=>{const k=mi(l.month),a=num(l.amount);if(isFinite(k)&&a>0){const kk=Math.max(k,start);lumps[kk]=(lumps[kk]||0)+a}});
+  const es=isFinite(mi(S.extraStart))?mi(S.extraStart):start, rec=num(S.extra);
+  const years=new Map();let totI=0,totX=0,guard=0;
+  while(B>0.005&&guard<1200){
+    const i=B*r;
+    const p=Math.max(0,Math.min(pi-i,B));B-=p;
+    let x=0;if(withExtras){x=Math.min((m>=es?rec:0)+(lumps[m]||0),B);B-=x}
+    const y=Math.floor(m/12);
+    if(!years.has(y))years.set(y,{p:0,x:0,i:0,o:0,end:0});
+    const Y=years.get(y);Y.p+=p;Y.x+=x;Y.i+=i;Y.o+=other;Y.end=Math.max(0,B);
+    totI+=i;totX+=x;m++;guard++;
+  }
+  return {years,last:m-1,totI,totX,done:B<=0.005};
+}
+
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const compact=v=>v>=1e6?'$'+(v/1e6).toFixed(v%1e6?1:0)+'M':v>=1e3?'$'+Math.round(v/1e3)+'k':'$'+v;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let yc,bc;
+
+function baseOpts(){
+  const grid=css('--line'),tick=css('--muted');
+  return {responsive:true,maintainAspectRatio:false,animation:reduce?false:{duration:250},
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+usd(c.parsed.y)}}},
+    scales:{x:{grid:{display:false},ticks:{color:tick,maxRotation:0,autoSkipPadding:10,font:{family:'Instrument Sans'}}},
+            y:{grid:{color:grid},border:{display:false},ticks:{color:tick,callback:compact,font:{family:'Instrument Sans'}}}}};
+}
+
+function makeCharts(){
+  if(typeof Chart==='undefined')return;
+  yc&&yc.destroy();bc&&bc.destroy();
+  const yo=baseOpts();yo.scales.x.stacked=true;yo.scales.y.stacked=true;
+  yo.plugins.tooltip.callbacks.footer=items=>'Total: '+usd(items.reduce((s,c)=>s+c.parsed.y,0));
+  yc=new Chart($('yearChart'),{type:'bar',data:{labels:[],datasets:[
+    {label:'Scheduled principal',data:[],backgroundColor:css('--principal'),stack:'s'},
+    {label:'Extra principal',data:[],backgroundColor:css('--extra'),stack:'s'},
+    {label:'Interest',data:[],backgroundColor:css('--interest'),stack:'s'},
+    {label:'Escrow & other',data:[],backgroundColor:css('--other'),stack:'s'}]},options:yo});
+  const bo=baseOpts();
+  bc=new Chart($('balChart'),{type:'line',data:{labels:[],datasets:[
+    {label:'With extra payments',data:[],borderColor:css('--principal'),backgroundColor:css('--principal'),borderWidth:2.5,pointRadius:0,tension:.15},
+    {label:'Regular schedule',data:[],borderColor:css('--base'),borderDash:[5,4],borderWidth:1.5,pointRadius:0,tension:.15}]},options:bo});
+}
+
+let pending=false;
+function schedule(){if(!pending){pending=true;requestAnimationFrame(()=>{pending=false;render()})}}
+
+function render(){
+  const d=derived();
+  const err=$('err');
+  const firstInt=num(S.balance)*d.r;
+  if(!(num(S.balance)>0)||!isFinite(d.start)||mi(S.final)<d.start){err.hidden=false;err.textContent='Enter a positive balance and a final payment month after the next payment.';return}
+  if(d.pi<=firstInt){err.hidden=false;err.textContent='Principal & interest of '+usd(d.pi,2)+' doesn’t cover the first month’s interest of '+usd(firstInt,2)+'. Raise it or clear the field to calculate it.';return}
+  err.hidden=true;
+
+  const base=simulate(false,d), sc=simulate(true,d);
+  const has=sc.totX>0.5, saved=base.totI-sc.totI, early=base.last-sc.last;
+
+  $('verdict').innerHTML=has
+    ? 'Paying <b>'+usd(sc.totX)+'</b> in extra principal finishes the loan in <b>'+ml(sc.last)+'</b>, '+(early>0?dur(early)+' early':'on schedule')+', and saves <b class="save">'+usd(saved)+'</b> in interest.'
+    : 'Your remaining '+d.n+' payments of '+usd(d.pi)+' principal and interest finish in <b>'+ml(base.last)+'</b>, with <b>'+usd(base.totI)+'</b> left to pay in interest.';
+
+  $('sPay').textContent=ml(sc.last);
+  $('sPayB').textContent=has?'Scheduled '+ml(base.last):'On schedule';
+  $('sInt').textContent=usd(sc.totI);
+  $('sIntB').textContent=has?'vs '+usd(base.totI):'At '+num(S.rate)+'%';
+  $('sSave').textContent=usd(saved);
+  $('sTime').textContent=has&&early>0?dur(early)+' sooner':'Add extra principal below';
+  $('sRatio').textContent=has?usd(saved/sc.totX,2):'–';
+  $('sX').textContent=has?'on '+usd(sc.totX)+' extra':'';
+
+  $('derived').innerHTML='Principal &amp; interest <b>'+usd(d.pi,2)+'</b>'+(S.pi===''?' (calculated)':'')+' · escrow &amp; other <b>'+usd(d.other,2)+'</b> · '+d.n+' payments left';
+
+  const yrs=[...base.years.keys()];
+  const firstY=yrs[0];
+  $('yearSub').textContent='From your next payment onward. '+(d.start%12!==0?firstY+' covers '+MON[d.start%12]+'–Dec only.':'');
+  const g=(y,k)=>(sc.years.get(y)||{})[k]||0;
+
+  if(yc){
+    yc.data.labels=yrs.map(String);
+    yc.data.datasets[0].data=yrs.map(y=>g(y,'p'));
+    yc.data.datasets[1].data=yrs.map(y=>g(y,'x'));
+    yc.data.datasets[2].data=yrs.map(y=>g(y,'i'));
+    yc.data.datasets[3].data=yrs.map(y=>g(y,'o'));
+    yc.update();
+    bc.data.labels=['Now'].concat(yrs.map(String));
+    bc.data.datasets[0].data=[num(S.balance)].concat(yrs.map(y=>sc.years.has(y)?sc.years.get(y).end:0));
+    bc.data.datasets[1].data=[num(S.balance)].concat(yrs.map(y=>base.years.get(y).end));
+    bc.update();
+  }
+
+  let rows='',T={p:0,x:0,i:0,o:0,s:0};
+  yrs.forEach(y=>{
+    const Y=sc.years.get(y), B=base.years.get(y);
+    const s=B.i-(Y?Y.i:0);T.s+=s;
+    if(Y){T.p+=Y.p;T.x+=Y.x;T.i+=Y.i;T.o+=Y.o;
+      rows+='<tr><td>'+y+'</td><td>'+usd(Y.p)+'</td><td>'+(Y.x?usd(Y.x):'–')+'</td><td>'+usd(Y.i)+'</td><td>'+usd(Y.o)+'</td><td>'+usd(Y.p+Y.x+Y.i+Y.o)+'</td><td>'+usd(Y.end)+'</td><td>'+(s>0.5?usd(s):'–')+'</td></tr>';
+    } else rows+='<tr><td>'+y+'</td><td class="paid" colspan="6">Paid off</td><td>'+usd(s)+'</td></tr>';
+  });
+  $('tbody').innerHTML=rows;
+  $('tfoot').innerHTML='<tr><td>Total</td><td>'+usd(T.p)+'</td><td>'+(T.x?usd(T.x):'–')+'</td><td>'+usd(T.i)+'</td><td>'+usd(T.o)+'</td><td>'+usd(T.p+T.x+T.i+T.o)+'</td><td></td><td>'+usd(T.s)+'</td></tr>';
+}
+
+function renderLumps(){
+  const box=$('lumps');box.innerHTML='';
+  (S.lumps||[]).forEach((l,idx)=>{
+    const row=document.createElement('div');row.className='lump';
+    row.innerHTML='<div><div class="money"><input type="number" inputmode="decimal" min="0" step="1000" aria-label="Amount" placeholder="Amount"></div></div><div><input type="month" aria-label="Month"></div><button class="rm" type="button" aria-label="Remove payment">×</button>';
+    const [a,m]=row.querySelectorAll('input');
+    a.value=l.amount??'';m.value=l.month||'';m.min=S.next;
+    a.addEventListener('input',()=>{l.amount=a.value;save();schedule()});
+    m.addEventListener('input',()=>{l.month=m.value;save();schedule()});
+    row.querySelector('.rm').addEventListener('click',()=>{S.lumps.splice(idx,1);save();renderLumps();schedule()});
+    box.appendChild(row);
+  });
+}
+
+function fillInputs(){
+  document.querySelectorAll('[data-k]').forEach(el=>{el.value=S[el.dataset.k]??''});
+  $('extraRange').value=Math.min(5000,num(S.extra));
+  $('extraStart').min=S.next;
+  renderLumps();
+}
+
+document.querySelectorAll('[data-k]').forEach(el=>{
+  el.addEventListener('input',()=>{
+    const k=el.dataset.k;
+    S[k]=el.type==='number'?(el.value===''?(k==='pi'?'':0):el.value):el.value;
+    if(location.search)history.replaceState(null,'',location.pathname);
+    if(k==='extra')$('extraRange').value=Math.min(5000,num(S.extra));
+    if(k==='next'){$('extraStart').min=S.next}
+    save();schedule();
+  });
+});
+$('extraRange').addEventListener('input',e=>{S.extra=e.target.value;$('extra').value=e.target.value;save();schedule()});
+$('addLump').addEventListener('click',()=>{
+  const d=derived();S.lumps.push({amount:'50000',month:ms(d.start+2)});save();renderLumps();schedule();
+});
+$('reset').addEventListener('click',()=>{S=JSON.parse(JSON.stringify(DEFAULTS));if(location.search)history.replaceState(null,'',location.pathname);save();fillInputs();schedule()});
+$('share').addEventListener('click',async()=>{
+  const u=shareURL(),b=$('share');
+  try{await navigator.clipboard.writeText(u);b.textContent='Link copied'}catch(e){window.prompt('Copy this link:',u)}
+  setTimeout(()=>{b.textContent='Copy link to this scenario'},2000);
+});
+
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{makeCharts();render()});
+new MutationObserver(()=>{makeCharts();render()}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+fillInputs();
+function boot(){makeCharts();render()}
+if(typeof Chart!=='undefined')boot();else window.addEventListener('load',boot);
+render();
+})();
+</script>
+</body>
+</html>
